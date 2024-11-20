@@ -1,37 +1,53 @@
-from flask import Flask, render_template, jsonify
-
-app = Flask(__name__)
+import streamlit as st
+import pandas as pd
 
 # Dummy blood bank data
 blood_banks = [
     {
-        "name": "City Blood Bank",
-        "location": "Shahrah-e-Faisal, Karachi",
-        "timings": "9:00 AM - 9:00 PM",
-        "contact": "+92-300-1234567",
+        "Name": "City Blood Bank",
+        "Location": "Shahrah-e-Faisal, Karachi",
+        "Timings": "9:00 AM - 9:00 PM",
+        "Contact": "+92-300-1234567",
     },
     {
-        "name": "Safe Blood Bank",
-        "location": "North Nazimabad, Karachi",
-        "timings": "24/7",
-        "contact": "+92-300-7654321",
+        "Name": "Safe Blood Bank",
+        "Location": "North Nazimabad, Karachi",
+        "Timings": "24/7",
+        "Contact": "+92-300-7654321",
     },
     {
-        "name": "National Blood Center",
-        "location": "Clifton, Karachi",
-        "timings": "10:00 AM - 8:00 PM",
-        "contact": "+92-21-3456789",
+        "Name": "National Blood Center",
+        "Location": "Clifton, Karachi",
+        "Timings": "10:00 AM - 8:00 PM",
+        "Contact": "+92-21-3456789",
     },
 ]
 
-@app.route('/')
-def home():
-    return render_template('index.html', blood_banks=blood_banks)
+# Convert the data to a DataFrame for display
+df = pd.DataFrame(blood_banks)
 
-@app.route('/api/blood_banks')
-def get_blood_banks():
-    return jsonify(blood_banks)
+# Streamlit App
+st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+st.title("🩸 Blood Bank Finder")
+st.write("Find blood banks in Karachi with their details.")
 
+# Display the blood banks in a table
+st.subheader("Available Blood Banks")
+st.table(df)
+
+# Search functionality
+st.subheader("Search for a Blood Bank")
+search_term = st.text_input("Enter a location or name:")
+if search_term:
+    filtered_data = df[
+        df["Name"].str.contains(search_term, case=False) |
+        df["Location"].str.contains(search_term, case=False)
+    ]
+    if not filtered_data.empty:
+        st.write("Search Results:")
+        st.table(filtered_data)
+    else:
+        st.write("No results found.")
+
+st.write("📞 Contact the blood bank for more details.")
