@@ -100,22 +100,6 @@ st.markdown("### Blood donation saves lives! 💉❤️")
 with st.spinner("Loading blood banks..."):
     time.sleep(2)  # Simulate loading time
 
-# Search functionality for blood banks
-st.subheader("Search for a Blood Bank")
-
-# Filter by name or location
-search_term = st.text_input("Search by blood bank name or location:")
-if search_term:
-    filtered_data = df[
-        df["Name"].str.contains(search_term, case=False) |
-        df["Location"].str.contains(search_term, case=False)
-    ]
-    if not filtered_data.empty:
-        st.write("Search Results:")
-        st.write(filtered_data[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
-    else:
-        st.write("No results found.")
-
 # Filter by blood group
 st.subheader("Search for a Specific Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
