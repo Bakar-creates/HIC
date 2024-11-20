@@ -8,42 +8,64 @@ blood_banks = [
         "Location": "Shahrah-e-Faisal, Karachi",
         "Timings": "9:00 AM - 9:00 PM",
         "Contact": "+92-300-1234567",
-        "Available Blood Groups": "A+, A-, O+, O-"
+        "Available Blood Groups": "A+, A-, O+, O-, B+",
+        "Website": "https://citybloodbank.com"
     },
     {
         "Name": "Safe Blood Bank",
         "Location": "North Nazimabad, Karachi",
         "Timings": "24/7",
         "Contact": "+92-300-7654321",
-        "Available Blood Groups": "B+, B-, AB+, O+"
+        "Available Blood Groups": "B+, B-, AB+, O+, O-",
+        "Website": "https://safebloodbank.com"
     },
     {
         "Name": "National Blood Center",
         "Location": "Clifton, Karachi",
         "Timings": "10:00 AM - 8:00 PM",
         "Contact": "+92-21-3456789",
-        "Available Blood Groups": "A+, AB-, O-"
+        "Available Blood Groups": "A+, AB-, O-, O+",
+        "Website": "https://nationalbloodcenter.com"
     },
     {
         "Name": "Karachi Blood Bank",
         "Location": "Korangi, Karachi",
         "Timings": "8:00 AM - 6:00 PM",
         "Contact": "+92-300-4567890",
-        "Available Blood Groups": "A+, B-, O+"
+        "Available Blood Groups": "A+, B-, O+, O-",
+        "Website": "https://karachibloodbank.com"
     },
     {
         "Name": "Lifesaver Blood Bank",
         "Location": "Gulshan-e-Iqbal, Karachi",
         "Timings": "9:00 AM - 10:00 PM",
         "Contact": "+92-300-6789012",
-        "Available Blood Groups": "O+, AB-, A-"
+        "Available Blood Groups": "O+, AB-, A-, O-",
+        "Website": "https://lifesaverbloodbank.com"
     },
     {
         "Name": "Hope Blood Bank",
         "Location": "F.B Area, Karachi",
         "Timings": "24/7",
         "Contact": "+92-300-2345678",
-        "Available Blood Groups": "B+, AB+, O+"
+        "Available Blood Groups": "B+, AB+, O+, O-",
+        "Website": "https://hopebloodbank.com"
+    },
+    {
+        "Name": "Miracle Blood Bank",
+        "Location": "Lahore, Karachi",
+        "Timings": "10:00 AM - 6:00 PM",
+        "Contact": "+92-300-1122334",
+        "Available Blood Groups": "A+, B+, O-, O+",
+        "Website": "https://miraclebloodbank.com"
+    },
+    {
+        "Name": "Red Crescent Blood Bank",
+        "Location": "Karachi Cantt, Karachi",
+        "Timings": "9:00 AM - 9:00 PM",
+        "Contact": "+92-300-9988776",
+        "Available Blood Groups": "A-, AB-, O+, O-",
+        "Website": "https://redcrescentbloodbank.com"
     },
 ]
 
@@ -146,6 +168,7 @@ if not filtered_data.empty:
                 <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
                 <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
                 <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
+                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank" style="color: #FF4C4C;">Visit Website</a></p>
             </div>
         </div>
         """, unsafe_allow_html=True)
