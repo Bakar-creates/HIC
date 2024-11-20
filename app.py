@@ -80,7 +80,7 @@ areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
 # Title and Introduction
-st.markdown("<h1 class='title'>🩸 Blood Bank Finder</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='title' style='color: #ffffff;'>🩸 Blood Bank Finder</h1>", unsafe_allow_html=True)
 st.markdown("""
 Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.
 """)
@@ -114,9 +114,9 @@ if not filtered_data.empty:
 
     for idx, blood_bank in filtered_data.iterrows():
         st.markdown(f"""
-        <div style="border: 2px solid #FF6347; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #f8f8f8;">
+        <div style="border: 2px solid #FF6347; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #f8f8f8; color: #333;">
             <div>
-                <h3>{blood_bank['Name']}</h3>
+                <h3 style="color: #FF6347;">{blood_bank['Name']}</h3>
                 <p><strong>Location:</strong> {blood_bank['Location']}</p>
                 <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
                 <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
