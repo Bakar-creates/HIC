@@ -80,7 +80,7 @@ areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
 # Title and Introduction
-st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='title'>🩸 Blood Bank Finder</h1>", unsafe_allow_html=True)
 st.markdown("""
 Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.
 """)
@@ -108,7 +108,7 @@ if selected_area != "All":
 else:
     filtered_data = filtered_by_group
 
-# CSS Styling for Animation and Transitions
+# CSS Styling for Animation, Transitions, and Responsiveness
 st.markdown(
     """
     <style>
@@ -163,6 +163,25 @@ st.markdown(
 
         .card p {
             transition: color 0.3s ease;
+        }
+
+        /* Responsive Design for Heading */
+        @media screen and (max-width: 600px) {
+            .title {
+                font-size: 24px;
+            }
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 1024px) {
+            .title {
+                font-size: 32px;
+            }
+        }
+
+        @media screen and (min-width: 1025px) {
+            .title {
+                font-size: 40px;
+            }
         }
     </style>
     """, unsafe_allow_html=True)
