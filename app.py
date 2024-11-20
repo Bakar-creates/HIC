@@ -82,6 +82,17 @@ st.markdown(
             background-color: #ffffff;
             border-radius: 10px;
         }
+        .card {
+            border: 2px solid #FF4C4C;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f8f8f8;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -119,7 +130,7 @@ if not filtered_data.empty:
 
     for idx, blood_bank in filtered_data.iterrows():
         st.markdown(f"""
-        <div style="border: 2px solid #FF4C4C; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #f8f8f8;">
+        <div class="card">
             <div>
                 <h3>{blood_bank['Name']}</h3>
                 <p><strong>Location:</strong> {blood_bank['Location']}</p>
@@ -132,8 +143,9 @@ if not filtered_data.empty:
 else:
     st.write("No results found based on the selected filters. Please try different options.")
 
-# Footer
+# Footer with Contact Information
 st.markdown("""
 ---
 📞 Contact the blood bank directly for more information.
 """)
+
