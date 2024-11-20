@@ -109,21 +109,40 @@ if selected_blood_group != "All":
     filtered_by_group = df[df["Available Blood Groups"].str.contains(selected_blood_group, case=False)]
     if not filtered_by_group.empty:
         st.write(f"Blood Banks with {selected_blood_group}:")
-        st.write(filtered_by_group[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
     else:
         st.write(f"No blood banks found for blood group {selected_blood_group}.")
+else:
+    filtered_by_group = df
 
 # Filter by area
 st.subheader("Search by Area")
 selected_area = st.selectbox("Select an area:", ["All"] + areas)
 
 if selected_area != "All":
-    filtered_by_area = df[df["Location"].str.contains(selected_area, case=False)]
+    filtered_by_area = filtered_by_group[filtered_by_group["Location"].str.contains(selected_area, case=False)]
     if not filtered_by_area.empty:
         st.write(f"Blood Banks in {selected_area}:")
-        st.write(filtered_by_area[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
     else:
         st.write(f"No blood banks found in {selected_area}.")
+else:
+    filtered_by_area = filtered_by_group
+
+# Display each blood bank in columns
+st.markdown("### Available Blood Banks:")
+
+# Create a column layout for each blood bank
+columns = st.columns(3)  # You can adjust the number of columns here based on your design
+
+# For each blood bank, create content in a column
+for idx, blood_bank in filtered_by_area.iterrows():
+    col = columns[idx % 3]  # Distribute blood banks across the columns
+    with col:
+        st.markdown(f"**{blood_bank['Name']}**")
+        st.write(f"Location: {blood_bank['Location']}")
+        st.write(f"Timings: {blood_bank['Timings']}")
+        st.write(f"Contact: {blood_bank['Contact']}")
+        st.write(f"Available Blood Groups: {blood_bank['Available Blood Groups']}")
+        st.write("---")
 
 # Fun animation with emojis
 st.markdown("### Let's Save Lives Together! 🩸❤️")
