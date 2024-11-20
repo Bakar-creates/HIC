@@ -108,20 +108,54 @@ if selected_area != "All":
 else:
     filtered_data = filtered_by_group
 
-# Display results with card-style layout
+# CSS Styling for Animation
+st.markdown(
+    """
+    <style>
+        .card {
+            border: 2px solid #FF6347;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            color: #FF6347;
+        }
+
+        .card a {
+            color: #FF6347;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+# Display results with card-style layout and animations
 if not filtered_data.empty:
     st.markdown("### Blood Bank Details:")
 
     for idx, blood_bank in filtered_data.iterrows():
         st.markdown(f"""
-        <div style="border: 2px solid #FF6347; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #f8f8f8; color: #333;">
+        <div class="card">
             <div>
-                <h3 style="color: #FF6347;">{blood_bank['Name']}</h3>
+                <h3>{blood_bank['Name']}</h3>
                 <p><strong>Location:</strong> {blood_bank['Location']}</p>
                 <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
                 <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
                 <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
-                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank" style="color: #FF6347;">Visit Website</a></p>
+                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
             </div>
         </div>
         """, unsafe_allow_html=True)
