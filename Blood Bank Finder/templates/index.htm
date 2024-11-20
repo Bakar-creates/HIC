@@ -1,1 +1,28 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Finder</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Blood Bank Finder</h1>
+    </header>
+    <main>
+        <h2>Blood Banks in Karachi</h2>
+        <ul>
+            {% for bank in blood_banks %}
+            <li>
+                <h3>{{ bank.name }}</h3>
+                <p><strong>Location:</strong> {{ bank.location }}</p>
+                <p><strong>Timings:</strong> {{ bank.timings }}</p>
+                <p><strong>Contact:</strong> {{ bank.contact }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
