@@ -78,51 +78,26 @@ areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 # Streamlit App Configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
-# Background Image Styling (optional)
+# Set a background RGB gradient
 st.markdown(
     """
     <style>
         body {
-            background-image: url('https://example.com/your-background-image.jpg'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center center;
+            background: linear-gradient(135deg, rgba(255, 99, 71, 0.9), rgba(0, 191, 255, 0.9)); /* Tomato to DeepSkyBlue gradient */
+            color: #ffffff;
         }
         .title {
-            color: white;
             font-size: 36px;
             font-weight: bold;
         }
         .subheader {
             font-size: 24px;
-            color: #D32F2F;
+            color: #FF6347; /* Light tomato color */
         }
-        .stTextInput input {
+        .stSelectbox, .stTextInput input {
             background-color: #ffffff;
             border-radius: 10px;
-        }
-        .stSelectbox {
-            background-color: transparent;  /* Remove white background */
-            border-radius: 10px;
-            border: 2px solid #FF4C4C;  /* Optional: Custom border for select box */
-        }
-        .card {
-            border: 2px solid #FF4C4C;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #f8f8f8;
-            transition: transform 0.3s ease-in-out;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        /* Additional text styling */
-        h1, h3, p {
-            color: white;
-        }
-        /* Improving text contrast */
-        .card p, .card h3 {
-            color: #333333;
+            color: #333;
         }
     </style>
     """,
