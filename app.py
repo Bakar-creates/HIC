@@ -1,12 +1,33 @@
 import streamlit as st
 import pandas as pd
 
-# Load blood bank data from CSV
-try:
-    df = pd.read_csv("blood_banks.csv")
-except FileNotFoundError:
-    st.error("The file 'blood_banks.csv' was not found. Please ensure it exists in the same directory as this app.")
-    st.stop()
+# Dummy blood bank data
+blood_banks = [
+    {
+        "Name": "City Blood Bank",
+        "Location": "Shahrah-e-Faisal, Karachi",
+        "Timings": "9:00 AM - 9:00 PM",
+        "Contact": "+92-300-1234567",
+        "Available Blood Groups": "A+, A-, O+, O-",
+    },
+    {
+        "Name": "Safe Blood Bank",
+        "Location": "North Nazimabad, Karachi",
+        "Timings": "24/7",
+        "Contact": "+92-300-7654321",
+        "Available Blood Groups": "B+, B-, AB+, O+",
+    },
+    {
+        "Name": "National Blood Center",
+        "Location": "Clifton, Karachi",
+        "Timings": "10:00 AM - 8:00 PM",
+        "Contact": "+92-21-3456789",
+        "Available Blood Groups": "A+, AB-, O-",
+    },
+]
+
+# Convert the data to a DataFrame for easier manipulation
+df = pd.DataFrame(blood_banks)
 
 # Streamlit App
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
