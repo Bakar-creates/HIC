@@ -1,5 +1,4 @@
-Name,Location,Timings,Contact
-City Blood Bank,Shahrah-e-Faisal, Karachi,9:00 AM - 9:00 PM,+92-300-1234567
-Safe Blood Bank,North Nazimabad, Karachi,24/7,+92-300-7654321
-National Blood Center,Clifton, Karachi,10:00 AM - 8:00 PM,+92-21-3456789
-
+Name,Location,Timings,Contact,Available Blood Groups
+City Blood Bank,Shahrah-e-Faisal, Karachi,9:00 AM - 9:00 PM,+92-300-1234567,A+, A-, O+, O-
+Safe Blood Bank,North Nazimabad, Karachi,24/7,+92-300-7654321,B+, B-, AB+, O+
+National Blood Center,Clifton, Karachi,10:00 AM - 8:00 PM,+92-21-3456789,A+, AB-, O-
