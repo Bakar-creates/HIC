@@ -78,6 +78,31 @@ areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 # Streamlit App Configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
+# No background gradient anymore
+st.markdown(
+    """
+    <style>
+        body {
+            color: #000000;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .subheader {
+            font-size: 24px;
+            color: #FF6347; /* Light tomato color */
+        }
+        .stSelectbox, .stTextInput input {
+            background-color: #ffffff;
+            border-radius: 10px;
+            color: #333;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder</h1>", unsafe_allow_html=True)
 st.markdown("""
