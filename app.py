@@ -93,6 +93,14 @@ st.markdown(
         .card:hover {
             transform: scale(1.05);
         }
+        /* Additional text styling */
+        h1, h3, p {
+            color: white;
+        }
+        /* Improving text contrast */
+        .card p, .card h3 {
+            color: #333333;
+        }
     </style>
     """,
     unsafe_allow_html=True
