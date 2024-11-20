@@ -112,14 +112,14 @@ st.markdown("""
 Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.
 """)
 
-# Blood Group Search
+# Area Search (Moved to the top)
+st.subheader("📍 Search by Area")
+selected_area = st.selectbox("Select an Area:", ["All"] + areas, help="Select an area to filter blood banks.")
+
+# Blood Group Search (Moved below Area)
 st.subheader("🔍 Search for a Specific Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, help="Select a blood group to filter the available blood banks.")
-
-# Area Search
-st.subheader("📍 Search by Area")
-selected_area = st.selectbox("Select an Area:", ["All"] + areas, help="Select an area to filter blood banks.")
 
 # Filter the data based on selected criteria
 if selected_blood_group != "All":
@@ -156,4 +156,3 @@ st.markdown("""
 ---
 📞 Contact the blood bank directly for more information.
 """)
-
