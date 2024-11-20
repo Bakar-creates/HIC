@@ -52,14 +52,6 @@ blood_banks = [
         "Website": "https://hopebloodbank.com"
     },
     {
-        "Name": "Miracle Blood Bank",
-        "Location": "Lahore, Karachi",
-        "Timings": "10:00 AM - 6:00 PM",
-        "Contact": "+92-300-1122334",
-        "Available Blood Groups": "A+, B+, O-, O+",
-        "Website": "https://miraclebloodbank.com"
-    },
-    {
         "Name": "Red Crescent Blood Bank",
         "Location": "Karachi Cantt, Karachi",
         "Timings": "9:00 AM - 9:00 PM",
@@ -67,12 +59,20 @@ blood_banks = [
         "Available Blood Groups": "A-, AB-, O+, O-",
         "Website": "https://redcrescentbloodbank.com"
     },
+    {
+        "Name": "Miracle Blood Bank",
+        "Location": "Saddar, Karachi",
+        "Timings": "10:00 AM - 6:00 PM",
+        "Contact": "+92-300-1122334",
+        "Available Blood Groups": "A+, B+, O-, O+",
+        "Website": "https://miraclebloodbank.com"
+    }
 ]
 
 # Convert the data to a DataFrame for easier manipulation
 df = pd.DataFrame(blood_banks)
 
-# Extract unique areas from the "Location" column
+# Extract unique areas from the "Location" column (only Karachi areas)
 areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 
 # Streamlit App Configuration
