@@ -85,21 +85,6 @@ st.markdown("""
 Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.
 """)
 
-# Adjust the heading color for light mode and dark mode
-st.markdown(
-    """
-    <style>
-        .title {
-            color: #FF6347;
-        }
-
-        body {
-            background-color: #f0f0f5;
-            color: #333;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
 # Add search placeholder texts
 st.subheader("📍 Search by Area")
 selected_area = st.selectbox("Select an Area:", ["All"] + areas, help="Select an area to filter blood banks.", index=0)
@@ -123,10 +108,26 @@ if selected_area != "All":
 else:
     filtered_data = filtered_by_group
 
-# CSS Styling for Animation
+# CSS Styling for Animation and Transitions
 st.markdown(
     """
     <style>
+        .title {
+            color: #FF6347;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        .title:hover {
+            color: #FF4500;  /* Change color on hover */
+        }
+
+        body {
+            background-color: #f0f0f5;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
         .card {
             border: 2px solid #FF6347;
             border-radius: 10px;
@@ -134,25 +135,34 @@ st.markdown(
             margin-bottom: 20px;
             background-color: #f8f8f8;
             color: #333;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
         .card:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #FF6347;
+            color: white;
         }
 
         .card h3 {
             color: #FF6347;
+            transition: color 0.3s ease;
         }
 
         .card a {
             color: #FF6347;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .card a:hover {
+            color: #FFFFFF;
             text-decoration: underline;
+        }
+
+        .card p {
+            transition: color 0.3s ease;
         }
     </style>
     """, unsafe_allow_html=True)
