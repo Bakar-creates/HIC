@@ -29,11 +29,14 @@ blood_banks = [
 # Convert the data to a DataFrame for easier manipulation
 df = pd.DataFrame(blood_banks)
 
+# Extract unique areas from the "Location" column
+areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
+
 # Streamlit App
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
 st.title("🩸 Blood Bank Finder")
-st.write("Find blood banks in Karachi with their details and available blood groups.")
+st.write("Find blood banks in Karachi with their details, available blood groups, and areas.")
 
 # Search functionality for blood banks
 st.subheader("Search for a Blood Bank")
@@ -63,5 +66,17 @@ if selected_blood_group != "All":
         st.write(filtered_by_group[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
     else:
         st.write(f"No blood banks found for blood group {selected_blood_group}.")
+
+# Filter by area
+st.subheader("Search by Area")
+selected_area = st.selectbox("Select an area:", ["All"] + areas)
+
+if selected_area != "All":
+    filtered_by_area = df[df["Location"].str.contains(selected_area, case=False)]
+    if not filtered_by_area.empty:
+        st.write(f"Blood Banks in {selected_area}:")
+        st.write(filtered_by_area[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
+    else:
+        st.write(f"No blood banks found in {selected_area}.")
 
 st.write("📞 Contact the blood bank for more details.")
