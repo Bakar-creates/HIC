@@ -151,13 +151,13 @@ st.markdown(
         }
 
         .card a {
-            color: #FF6347;
+            color: blue; /* Set the color to blue */
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .card a:hover {
-            color: #FFFFFF;
+            color: #FFFFFF; /* Change color when hovered */
             text-decoration: underline;
         }
 
