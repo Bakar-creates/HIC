@@ -35,11 +35,7 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 st.title("🩸 Blood Bank Finder")
 st.write("Find blood banks in Karachi with their details and available blood groups.")
 
-# Display the blood banks in a table
-st.subheader("Available Blood Banks")
-st.table(df)
-
-# Search functionality
+# Search functionality for blood banks
 st.subheader("Search for a Blood Bank")
 
 # Filter by name or location
@@ -51,7 +47,7 @@ if search_term:
     ]
     if not filtered_data.empty:
         st.write("Search Results:")
-        st.table(filtered_data)
+        st.write(filtered_data[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
     else:
         st.write("No results found.")
 
@@ -64,7 +60,7 @@ if selected_blood_group != "All":
     filtered_by_group = df[df["Available Blood Groups"].str.contains(selected_blood_group, case=False)]
     if not filtered_by_group.empty:
         st.write(f"Blood Banks with {selected_blood_group}:")
-        st.table(filtered_by_group)
+        st.write(filtered_by_group[["Name", "Location", "Timings", "Contact"]])  # Show relevant columns
     else:
         st.write(f"No blood banks found for blood group {selected_blood_group}.")
 
