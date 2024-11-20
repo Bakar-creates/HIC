@@ -146,7 +146,7 @@ st.markdown(
         }
 
         .card h3 {
-            color: #FF6347;
+            color: #4CAF50;  /* Updated heading color */
             transition: color 0.3s ease;
         }
 
