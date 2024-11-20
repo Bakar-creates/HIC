@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
+import time
 
-# Dummy blood bank data
+# Dummy blood bank data with additional entries and more areas
 blood_banks = [
     {
         "Name": "City Blood Bank",
@@ -24,6 +25,62 @@ blood_banks = [
         "Contact": "+92-21-3456789",
         "Available Blood Groups": "A+, AB-, O-",
     },
+    {
+        "Name": "Karachi Blood Bank",
+        "Location": "Korangi, Karachi",
+        "Timings": "8:00 AM - 6:00 PM",
+        "Contact": "+92-300-4567890",
+        "Available Blood Groups": "A+, B-, O+",
+    },
+    {
+        "Name": "Lifesaver Blood Bank",
+        "Location": "Gulshan-e-Iqbal, Karachi",
+        "Timings": "9:00 AM - 10:00 PM",
+        "Contact": "+92-300-6789012",
+        "Available Blood Groups": "O+, AB-, A-",
+    },
+    {
+        "Name": "Hope Blood Bank",
+        "Location": "F.B Area, Karachi",
+        "Timings": "24/7",
+        "Contact": "+92-300-2345678",
+        "Available Blood Groups": "B+, AB+, O+",
+    },
+    {
+        "Name": "Red Cross Blood Bank",
+        "Location": "Saddar, Karachi",
+        "Timings": "9:00 AM - 5:00 PM",
+        "Contact": "+92-21-9876543",
+        "Available Blood Groups": "O-, A-, B+",
+    },
+    {
+        "Name": "Everest Blood Bank",
+        "Location": "Lahore, Karachi",
+        "Timings": "9:00 AM - 6:00 PM",
+        "Contact": "+92-300-9876543",
+        "Available Blood Groups": "A+, O+, AB-",
+    },
+    {
+        "Name": "LifeLink Blood Bank",
+        "Location": "Jamshed Town, Karachi",
+        "Timings": "8:00 AM - 8:00 PM",
+        "Contact": "+92-21-6654321",
+        "Available Blood Groups": "A-, B-, AB+, O-",
+    },
+    {
+        "Name": "Zindagi Blood Bank",
+        "Location": "Malir, Karachi",
+        "Timings": "9:00 AM - 7:00 PM",
+        "Contact": "+92-300-1122334",
+        "Available Blood Groups": "O+, B-, A+",
+    },
+    {
+        "Name": "MedLife Blood Bank",
+        "Location": "Bahria Town, Karachi",
+        "Timings": "24/7",
+        "Contact": "+92-300-9988776",
+        "Available Blood Groups": "B+, AB-, O+",
+    },
 ]
 
 # Convert the data to a DataFrame for easier manipulation
@@ -37,6 +94,11 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 
 st.title("🩸 Blood Bank Finder")
 st.write("Find blood banks in Karachi with their details, available blood groups, and areas.")
+st.markdown("### Blood donation saves lives! 💉❤️")
+
+# Animation for loading
+with st.spinner("Loading blood banks..."):
+    time.sleep(2)  # Simulate loading time
 
 # Search functionality for blood banks
 st.subheader("Search for a Blood Bank")
@@ -79,4 +141,10 @@ if selected_area != "All":
     else:
         st.write(f"No blood banks found in {selected_area}.")
 
+# Fun animation with emojis
+st.markdown("### Let's Save Lives Together! 🩸❤️")
+st.markdown(":point_right: **Share this app with friends and family.** :point_left:")
+st.markdown(":heavy_heart_exclamation: **Your donation could save someone's life!** :heavy_heart_exclamation:")
+
+# Footer
 st.write("📞 Contact the blood bank for more details.")
