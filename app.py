@@ -79,8 +79,9 @@ st.markdown(
             border-radius: 10px;
         }
         .stSelectbox {
-            background-color: #ffffff;
+            background-color: transparent;  /* Remove white background */
             border-radius: 10px;
+            border: 2px solid #FF4C4C;  /* Optional: Custom border for select box */
         }
         .card {
             border: 2px solid #FF4C4C;
