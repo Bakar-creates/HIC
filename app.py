@@ -92,6 +92,37 @@ areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 # Streamlit App
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
+# Styling the app with custom background, colors, and fonts
+st.markdown("""
+    <style>
+    body {
+        background-color: #f5f5f5;
+        font-family: 'Arial', sans-serif;
+    }
+    h1 {
+        color: #e53946;
+        text-align: center;
+        font-size: 48px;
+    }
+    .stButton>button {
+        background-color: #e53946;
+        color: white;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 10px 20px;
+    }
+    .stSelectbox>div>div>div>input {
+        background-color: #ffffff;
+        color: #333;
+    }
+    .stSelectbox>div>div>div>div {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# Header and introduction
 st.title("🩸 Blood Bank Finder")
 st.write("Find blood banks in Karachi with their details, available blood groups, and areas.")
 st.markdown("### Blood donation saves lives! 💉❤️")
@@ -144,7 +175,10 @@ for idx, blood_bank in filtered_by_area.iterrows():
         st.write(f"Available Blood Groups: {blood_bank['Available Blood Groups']}")
         st.write("---")
 
-# Fun animation with emojis
+# Fun animation with balloons
+st.balloons()
+
+# Fun footer with an encouraging message
 st.markdown("### Let's Save Lives Together! 🩸❤️")
 st.markdown(":point_right: **Share this app with friends and family.** :point_left:")
 st.markdown(":heavy_heart_exclamation: **Your donation could save someone's life!** :heavy_heart_exclamation:")
