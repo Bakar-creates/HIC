@@ -40,6 +40,16 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
+# Add custom CSS to make the sidebar a bit transparent
+st.markdown(
+    """
+    <style>
+        .css-1d391kg {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
 # Function to handle login/signup interface
 def show_login_signup():
     global users_df  # Add this line to reference the global users_df variable
@@ -93,6 +103,8 @@ def show_login_signup():
                 st.session_state.user_contact = user.iloc[0]["Contact"]
                 st.session_state.user_blood_group = user.iloc[0]["Blood Group"]
                 st.success(f"Welcome, {email}!")
+                return  # Exit the function to avoid multiple re-renders
+
             else:
                 st.error("Invalid email or password. Please try again or sign up.")
 
@@ -132,7 +144,7 @@ else:
     else:
         filtered_data = filtered_by_group
 
-    # Display results with card-style layout
+    # Display results with card-style layout and animations
     if selected_area != "All" or selected_blood_group != "All":  # Show results only when filters are applied
         if not filtered_data.empty:
             st.markdown("### Blood Bank Details:")
