@@ -187,24 +187,28 @@ st.markdown(
     """, unsafe_allow_html=True)
 
 # Display results with card-style layout and animations
-if not filtered_data.empty:
-    st.markdown("### Blood Bank Details:")
+if selected_area != "All" or selected_blood_group != "All":  # Show results only when filters are applied
+    if not filtered_data.empty:
+        st.markdown("### Blood Bank Details:")
 
-    for idx, blood_bank in filtered_data.iterrows():
-        st.markdown(f"""
-        <div class="card">
-            <div>
-                <h3>{blood_bank['Name']}</h3>
-                <p><strong>Location:</strong> {blood_bank['Location']}</p>
-                <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
-                <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
-                <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
-                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
+        for idx, blood_bank in filtered_data.iterrows():
+            st.markdown(f"""
+            <div class="card">
+                <div>
+                    <h3>{blood_bank['Name']}</h3>
+                    <p><strong>Location:</strong> {blood_bank['Location']}</p>
+                    <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
+                    <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
+                    <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
+                    <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
+                </div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
+    else:
+        st.write("No results found based on the selected filters. Please try different options.")
 else:
-    st.write("No results found based on the selected filters. Please try different options.")
+    st.write("Please select a filter to view the blood bank details.")
+
 
 # Footer with Contact Information
 st.markdown("""
