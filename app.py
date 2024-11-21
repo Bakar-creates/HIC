@@ -106,7 +106,7 @@ else:
 
     # Add a prominent logout button at the top for easy logout
     if st.button("Logout"):
-        st.session_state.logged_in = False
+        st.session_state.clear()  # Clear the session state
         st.experimental_rerun()  # Rerun the app to show login/signup interface
 
     # Add search placeholder texts
