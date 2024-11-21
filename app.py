@@ -40,59 +40,64 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
-# Add Login and Signup Options
-auth_option = st.sidebar.radio("Choose an option:", ["Login", "Sign Up"])
+# Function to handle login/signup interface
+def show_login_signup():
+    auth_option = st.sidebar.radio("Choose an option:", ["Login", "Sign Up"])
 
-# Signup Page
-if auth_option == "Sign Up":
-    st.subheader("Create an Account")
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
-    confirm_password = st.text_input("Confirm Password", type="password")
-    contact = st.text_input("Contact Number")
-    blood_group = st.selectbox("Blood Group", ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"])
+    # Signup Page
+    if auth_option == "Sign Up":
+        st.subheader("Create an Account")
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
+        confirm_password = st.text_input("Confirm Password", type="password")
+        contact = st.text_input("Contact Number")
+        blood_group = st.selectbox("Blood Group", ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"])
 
-    if st.button("Sign Up"):
-        if not email or not password or not contact or not blood_group:
-            st.error("Please fill in all fields.")
-        elif password != confirm_password:
-            st.error("Passwords do not match.")
-        elif email in users_df["Email"].values:
-            st.error("Email already exists. Please login instead.")
-        else:
-            # Add new user to the DataFrame and save
-            new_user = pd.DataFrame({
-                "Email": [email],
-                "Password": [hash_password(password)],
-                "Contact": [contact],
-                "Blood Group": [blood_group]
-            })
-            users_df = pd.concat([users_df, new_user], ignore_index=True)
-            users_df.to_csv(user_data_file, index=False)
-            st.success("Account created successfully! Please log in.")
+        if st.button("Sign Up"):
+            if not email or not password or not contact or not blood_group:
+                st.error("Please fill in all fields.")
+            elif password != confirm_password:
+                st.error("Passwords do not match.")
+            elif email in users_df["Email"].values:
+                st.error("Email already exists. Please login instead.")
+            elif not email.endswith("@bbf.com"):
+                st.error("Email must end with '@bbf.com'.")
+            else:
+                # Add new user to the DataFrame and save
+                new_user = pd.DataFrame({
+                    "Email": [email],
+                    "Password": [hash_password(password)],
+                    "Contact": [contact],
+                    "Blood Group": [blood_group]
+                })
+                users_df = pd.concat([users_df, new_user], ignore_index=True)
+                users_df.to_csv(user_data_file, index=False)
+                st.success("Account created successfully! Please log in.")
 
-# Login Page
-elif auth_option == "Login":
-    st.subheader("Login to Your Account")
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    # Login Page
+    elif auth_option == "Login":
+        st.subheader("Login to Your Account")
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
 
-    if st.button("Login"):
-        # Authenticate user
-        hashed_password = hash_password(password)
-        user = users_df[(users_df["Email"] == email) & (users_df["Password"] == hashed_password)]
+        if st.button("Login"):
+            # Authenticate user
+            hashed_password = hash_password(password)
+            user = users_df[(users_df["Email"] == email) & (users_df["Password"] == hashed_password)]
 
-        if not user.empty:
-            st.session_state.logged_in = True
-            st.session_state.user_email = email
-            st.session_state.user_contact = user.iloc[0]["Contact"]
-            st.session_state.user_blood_group = user.iloc[0]["Blood Group"]
-            st.success(f"Welcome, {email}!")
-        else:
-            st.error("Invalid email or password. Please try again or sign up.")
+            if not user.empty:
+                st.session_state.logged_in = True
+                st.session_state.user_email = email
+                st.session_state.user_contact = user.iloc[0]["Contact"]
+                st.session_state.user_blood_group = user.iloc[0]["Blood Group"]
+                st.success(f"Welcome, {email}!")
+            else:
+                st.error("Invalid email or password. Please try again or sign up.")
 
 # Blood Bank Finder (only for logged-in users)
-if "logged_in" in st.session_state and st.session_state.logged_in:
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    show_login_signup()  # Show login/signup if not logged in
+else:
     # Blood Bank Finder
     st.markdown("""Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.""")
 
@@ -143,8 +148,9 @@ if "logged_in" in st.session_state and st.session_state.logged_in:
         st.write("Please select a filter to view the blood bank details.")
 
     # Footer with Contact Information
-    st.markdown("---")
-    st.markdown("📞 Contact the blood bank directly for more information.")
+    st.markdown("""--- 📞 Contact the blood bank directly for more information.""")
 
-else:
-    st.write("Please log in to access the Blood Bank Finder.")
+    # Option to log out
+    if st.button("Logout"):
+        st.session_state.logged_in = False
+        st.experimental_rerun()  # Rerun the app to show login/signup interface
