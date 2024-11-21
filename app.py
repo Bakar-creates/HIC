@@ -98,7 +98,7 @@ def show_login_signup():
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
     show_login_signup()  # Show login/signup if not logged in
 else:
-    # Blood Bank Finder
+    # Blood Bank Finder will only be displayed after login
     st.markdown("""Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.""")
 
     # Add search placeholder texts
@@ -147,10 +147,7 @@ else:
     else:
         st.write("Please select a filter to view the blood bank details.")
 
-    # Footer with Contact Information
-    st.markdown("""--- 📞 Contact the blood bank directly for more information.""")
-
-    # Option to log out
+    # Logout Button
     if st.button("Logout"):
         st.session_state.logged_in = False
         st.experimental_rerun()  # Rerun the app to show login/signup interface
