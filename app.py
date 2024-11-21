@@ -1,5 +1,36 @@
-# Streamlit App Configuration
+import streamlit as st
+import pandas as pd
+from time import sleep
+
+# Streamlit App Configuration (Must be at the top of the script)
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
+
+# Dummy blood bank data with more entries and details
+blood_banks = [
+    {
+        "Name": "City Blood Bank",
+        "Location": "Shahrah-e-Faisal, Karachi",
+        "Timings": "9:00 AM - 9:00 PM",
+        "Contact": "+92-300-1234567",
+        "Available Blood Groups": "A+, A-, O+, O-, B+",
+        "Website": "https://citybloodbank.com"
+    },
+    {
+        "Name": "Safe Blood Bank",
+        "Location": "North Nazimabad, Karachi",
+        "Timings": "24/7",
+        "Contact": "+92-300-7654321",
+        "Available Blood Groups": "B+, B-, AB+, O+, O-",
+        "Website": "https://safebloodbank.com"
+    },
+    # Add more entries...
+]
+
+# Convert the data to a DataFrame for easier manipulation
+df = pd.DataFrame(blood_banks)
+
+# Extract unique areas from the "Location" column (only Karachi areas)
+areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
 
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
