@@ -104,6 +104,11 @@ else:
     # Blood Bank Finder will only be displayed after login
     st.markdown("""Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.""")
 
+    # Add a prominent logout button at the top for easy logout
+    if st.button("Logout"):
+        st.session_state.logged_in = False
+        st.experimental_rerun()  # Rerun the app to show login/signup interface
+
     # Add search placeholder texts
     st.subheader("📍 Search by Area")
     selected_area = st.selectbox("Select an Area:", ["All"] + areas, help="Select an area to filter blood banks.", index=0)
@@ -149,11 +154,3 @@ else:
             st.write("No results found based on the selected filters. Please try different options.")
     else:
         st.write("Please select a filter to view the blood bank details.")
-
-    # Logout Button
-    if st.button("Logout"):
-        st.session_state.logged_in = False
-        st.experimental_rerun()  # Rerun the app to show login/signup interface
-
-
-
