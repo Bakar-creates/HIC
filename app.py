@@ -156,5 +156,4 @@ else:
         st.experimental_rerun()  # Rerun the app to show login/signup interface
 
 
-ChatGPT said:
-ChatGPT
+
