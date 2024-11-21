@@ -42,6 +42,8 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 
 # Function to handle login/signup interface
 def show_login_signup():
+    global users_df  # Add this line to reference the global users_df variable
+
     auth_option = st.sidebar.radio("Choose an option:", ["Login", "Sign Up"])
 
     # Signup Page
@@ -93,6 +95,7 @@ def show_login_signup():
                 st.success(f"Welcome, {email}!")
             else:
                 st.error("Invalid email or password. Please try again or sign up.")
+
 
 # Blood Bank Finder (only for logged-in users)
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
