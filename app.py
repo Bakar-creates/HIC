@@ -212,4 +212,3 @@ st.markdown("""
 📞 Contact the blood bank directly for more information.
 """)
 
-hide blood bank details when page open
