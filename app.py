@@ -40,6 +40,52 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
+# Add custom CSS for smooth transitions and animations
+st.markdown("""
+    <style>
+        .title {
+            text-align: center;
+            color: #D61A8E;
+        }
+        
+        /* Smooth fade-in for the app */
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Card animation for the blood bank details */
+        .card {
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Custom styling for the sidebar */
+        .stSidebar {
+            background-color: #F1F3F5;
+        }
+
+        .stButton>button {
+            background-color: #D61A8E;
+            color: white;
+            border-radius: 5px;
+        }
+
+    </style>
+""", unsafe_allow_html=True)
+
 # Function to handle login/signup interface
 def show_login_signup():
     global users_df  # Add this line to reference the global users_df variable
@@ -102,7 +148,7 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
     show_login_signup()  # Show login/signup if not logged in
 else:
     # Blood Bank Finder will only be displayed after login
-    st.markdown("""Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.""")
+    st.markdown("""Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.""", unsafe_allow_html=True)
 
     # Add a prominent logout button at the top for easy logout
     if st.button("Logout"):
@@ -114,10 +160,10 @@ else:
             st.write("Please refresh the page manually.")
 
     # Add search placeholder texts
-    st.subheader("📍 Search by Area")
+    st.subheader("📍 Search by Area", className="fade-in")
     selected_area = st.selectbox("Select an Area:", ["All"] + areas, help="Select an area to filter blood banks.", index=0)
 
-    st.subheader("🔍 Search for a Specific Blood Group")
+    st.subheader("🔍 Search for a Specific Blood Group", className="fade-in")
     blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
     selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, help="Select a blood group to filter the available blood banks.", index=0)
 
@@ -139,11 +185,11 @@ else:
     # Display results with card-style layout and animations
     if selected_area != "All" or selected_blood_group != "All":  # Show results only when filters are applied
         if not filtered_data.empty:
-            st.markdown("### Blood Bank Details:")
+            st.markdown("### Blood Bank Details:", className="fade-in")
 
             for idx, blood_bank in filtered_data.iterrows():
                 st.markdown(f"""
-                <div class="card">
+                <div class="card fade-in">
                     <div>
                         <h3>{blood_bank['Name']}</h3>
                         <p><strong>Location:</strong> {blood_bank['Location']}</p>
