@@ -107,7 +107,11 @@ else:
     # Add a prominent logout button at the top for easy logout
     if st.button("Logout"):
         st.session_state.clear()  # Clear the session state
-        st.experimental_rerun()  # Rerun the app to show login/signup interface
+        try:
+            st.experimental_rerun()  # Safely attempt rerun
+        except Exception as e:
+            st.error(f"Error while logging out: {str(e)}")
+            st.write("Please refresh the page manually.")
 
     # Add search placeholder texts
     st.subheader("📍 Search by Area")
