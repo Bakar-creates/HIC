@@ -1,90 +1,79 @@
 import streamlit as st
-import pandas as pd
-from time import sleep
+import json
+from github import Github
+from pathlib import Path
+import bcrypt
+import streamlit_authenticator as stauth
 
-# Streamlit App Configuration (Must be at the top of the script)
+# Streamlit App Configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
-# Dummy blood bank data with more entries and details
-blood_banks = [
-    {
-        "Name": "City Blood Bank",
-        "Location": "Shahrah-e-Faisal, Karachi",
-        "Timings": "9:00 AM - 9:00 PM",
-        "Contact": "+92-300-1234567",
-        "Available Blood Groups": "A+, A-, O+, O-, B+",
-        "Website": "https://citybloodbank.com"
-    },
-    {
-        "Name": "Safe Blood Bank",
-        "Location": "North Nazimabad, Karachi",
-        "Timings": "24/7",
-        "Contact": "+92-300-7654321",
-        "Available Blood Groups": "B+, B-, AB+, O+, O-",
-        "Website": "https://safebloodbank.com"
-    },
-    # Add more entries...
-]
+# GitHub Repo Configuration
+GITHUB_TOKEN = "your_github_personal_access_token"  # Replace with your PAT
+GITHUB_REPO = "your_username/your_repo_name"  # Replace with your repository
+GITHUB_FILE = "users.json"  # File to store user data
 
-# Convert the data to a DataFrame for easier manipulation
-df = pd.DataFrame(blood_banks)
+# Connect to GitHub
+g = Github(GITHUB_TOKEN)
+repo = g.get_repo(GITHUB_REPO)
 
-# Extract unique areas from the "Location" column (only Karachi areas)
-areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
+# Fetch or Create User Data File in the GitHub Repo
+try:
+    content = repo.get_contents(GITHUB_FILE)
+    users_data = json.loads(content.decoded_content.decode())
+except Exception as e:
+    users_data = {"users": []}  # Initialize empty user list if file doesn't exist
 
-# Title and Introduction
-st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
-st.markdown("""
-Welcome to the **Blood Bank Finder** app! Find the nearest blood banks in Karachi, their timings, and available blood groups.
-""")
+# Function to Save Users to GitHub
+def save_users_to_github(data):
+    try:
+        content = repo.get_contents(GITHUB_FILE)
+        repo.update_file(GITHUB_FILE, "Update user data", json.dumps(data), content.sha)
+    except Exception as e:
+        repo.create_file(GITHUB_FILE, "Create user data", json.dumps(data))
 
-# Add search placeholder texts
-st.subheader("📍 Search by Area")
-selected_area = st.selectbox("Select an Area:", ["All"] + areas, help="Select an area to filter blood banks.", index=0)
+# Login/Signup System
+def main():
+    st.title("🩸 Blood Bank Finder")
+    st.sidebar.title("Login/Signup")
 
-st.subheader("🔍 Search for a Specific Blood Group")
-blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
-selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, help="Select a blood group to filter the available blood banks.", index=0)
+    menu = st.sidebar.selectbox("Menu", ["Login", "Sign Up"])
 
-# Adding a loading spinner for a better user experience
-with st.spinner('Filtering the blood banks...'):
-    sleep(1)  # Simulate a loading process
+    if menu == "Login":
+        st.sidebar.subheader("Login")
+        username = st.sidebar.text_input("Username")
+        password = st.sidebar.text_input("Password", type="password")
+        login_button = st.sidebar.button("Login")
 
-# Filter the data based on selected criteria
-if selected_blood_group != "All":
-    filtered_by_group = df[df["Available Blood Groups"].str.contains(selected_blood_group, case=False)]
-else:
-    filtered_by_group = df
+        if login_button:
+            for user in users_data["users"]:
+                if user["username"] == username and bcrypt.checkpw(password.encode(), user["password"].encode()):
+                    st.success(f"Welcome back, {username}!")
+                    show_blood_bank_app()
+                    return
+            st.error("Invalid username or password.")
 
-if selected_area != "All":
-    filtered_data = filtered_by_group[filtered_by_group["Location"].str.contains(selected_area, case=False)]
-else:
-    filtered_data = filtered_by_group
+    elif menu == "Sign Up":
+        st.sidebar.subheader("Sign Up")
+        new_username = st.sidebar.text_input("Create a Username")
+        new_password = st.sidebar.text_input("Create a Password", type="password")
+        confirm_password = st.sidebar.text_input("Confirm Password", type="password")
+        signup_button = st.sidebar.button("Sign Up")
 
-# Display results only if filters are applied
-if selected_area != "All" or selected_blood_group != "All":
-    if not filtered_data.empty:
-        st.markdown("### Blood Bank Details:")
-        for idx, blood_bank in filtered_data.iterrows():
-            st.markdown(f"""
-            <div class="card">
-                <div>
-                    <h3>{blood_bank['Name']}</h3>
-                    <p><strong>Location:</strong> {blood_bank['Location']}</p>
-                    <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
-                    <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
-                    <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
-                    <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-    else:
-        st.write("No results found based on the selected filters. Please try different options.")
-else:
-    st.write("Please select an area or blood group to view available blood banks.")
+        if signup_button:
+            if new_password == confirm_password:
+                hashed_password = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt()).decode()
+                users_data["users"].append({"username": new_username, "password": hashed_password})
+                save_users_to_github(users_data)
+                st.success("Account created successfully! Please log in.")
+            else:
+                st.error("Passwords do not match.")
 
-# Footer with Contact Information
-st.markdown("""
----
-📞 Contact the blood bank directly for more information.
-""")
+def show_blood_bank_app():
+    st.markdown("""
+    Welcome to the **Blood Bank Finder** app! Use the filters to find the nearest blood banks in Karachi.
+    """)
+
+# Run the app
+if __name__ == "__main__":
+    main()
