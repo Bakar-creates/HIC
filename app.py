@@ -35,13 +35,18 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
-# Style for the blood bank cards with background image
+# Style for the app and dropdowns
 st.markdown("""
     <style>
+        /* App background color */
+        body {
+            background-color: #f9f9f9;  /* Light gray background */
+        }
+
         /* Dropdown box styling */
         div[data-baseweb="select"] > div {
-            background-color: #F0E68C; /* Light khaki background */
-            color: #2c3e50; /* Dark blue text */
+            background-color: #FFFACD; /* Lemon chiffon background */
+            color: #000000; /* Black text */
             border-radius: 8px;
             padding: 5px;
             border: 2px solid #DAA520; /* Golden border */
@@ -61,22 +66,7 @@ st.markdown("""
             background-color: #FFD700; /* Gold background on hover */
             color: #FFFFFF; /* White text */
         }
-    </style>
-""", unsafe_allow_html=True)
 
-# Search by Area
-st.subheader("📍 Search by Area")
-selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0, key="area_selectbox")
-
-# Search for a Specific Blood Group
-st.subheader("🔍 Search for a Specific Blood Group")
-blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
-selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0, key="blood_group_selectbox")
-
-
-st.markdown("""
-
-        
         /* Style for the blood bank cards */
         .blood-bank-card {
             background-color: cyan;  /* Cyan background for the cards */
@@ -85,7 +75,6 @@ st.markdown("""
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        /* Improved styling for readability */
         .blood-bank-card h3 {
             color: #2c3e50;
             font-size: 22px;
@@ -113,12 +102,12 @@ st.markdown("Welcome to the **Blood Bank Finder** app!")
 
 # Search by Area
 st.subheader("📍 Search by Area")
-selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0)
+selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0, key="area_selectbox")
 
 # Search for a Specific Blood Group
 st.subheader("🔍 Search for a Specific Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
-selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0, key="blood_group_selectbox")
 
 with st.spinner('Filtering the blood banks...'):
     sleep(1)
