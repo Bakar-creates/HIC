@@ -47,7 +47,7 @@ st.markdown("""
         }
         /* Style for the blood bank cards */
         .blood-bank-card {
-            background-color: white;  /* White background for the cards */
+            background-color: red;  /* Red background for the cards */
             padding: 20px;
             margin: 10px 0;
             border-radius: 8px;
