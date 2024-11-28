@@ -45,7 +45,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-        }
+       
         /* Style for the blood bank cards */
         .blood-bank-card {
             background-color: cyan;  /* Cyan background for the cards */
