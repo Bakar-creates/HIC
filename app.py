@@ -32,38 +32,35 @@ def get_blood_banks():
 # Streamlit App Configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
-# Add Background Image and Styles
+# Title and Introduction
+st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
+
+# Style for the blood bank cards with background image
 st.markdown("""
     <style>
         /* Background Image */
         body {
-            background-image: url('https://raw.githubusercontent.com/github.com/Bakar-creates/HIC/blob/main/assets/background-image.jpg '); /* Replace with your image URL */
+            background-image: url('https://raw.githubusercontent.com/Bakar-creates/HIC/main/assets/background-image.jpg');  /* Your raw GitHub URL */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        /* Title */
-        .title {
-            text-align: center;
-            color: #ffffff;
-            font-size: 48px;
-            font-weight: bold;
-        }
-        /* Style for the blood bank cards with colors */
+        /* Style for the blood bank cards */
         .blood-bank-card {
+            background-color: white;  /* White background for the cards */
             padding: 20px;
-            margin: 20px 0;
+            margin: 10px 0;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            color: white;
-            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         /* Improved styling for readability */
         .blood-bank-card h3 {
-            font-size: 24px;
+            color: #2c3e50;
+            font-size: 22px;
             margin-bottom: 10px;
         }
         .blood-bank-card p {
+            color: #34495e;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 8px;
@@ -78,9 +75,6 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-
-# Title and Introduction
-st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
 # Blood Bank Finder
 st.markdown("Welcome to the **Blood Bank Finder** app!")
@@ -103,26 +97,13 @@ with st.spinner('Filtering the blood banks...'):
     if selected_area != "All":
         data = data[data["Location"].str.contains(selected_area, case=False)]
 
-# Helper function to get background color based on available blood groups
-def get_card_color(blood_groups):
-    if "A+" in blood_groups or "O+" in blood_groups:
-        return "#2980b9"  # Blue for common positive groups
-    elif "B+" in blood_groups or "AB+" in blood_groups:
-        return "#e74c3c"  # Red for rare positive groups
-    elif "A-" in blood_groups or "O-" in blood_groups:
-        return "#8e44ad"  # Purple for negative groups
-    elif "B-" in blood_groups or "AB-" in blood_groups:
-        return "#f39c12"  # Yellow for rare negative groups
-    return "#95a5a6"  # Default grey for unknown or less common blood types
-
 # Display blood bank details only if the filters match
 if selected_area != "All" or selected_blood_group != "All":
     if not data.empty:
         st.markdown("### Blood Bank Details:")
         for _, blood_bank in data.iterrows():
-            color = get_card_color(blood_bank['Available Blood Groups'].split(","))
             st.markdown(f"""
-            <div class="blood-bank-card" style="background-color: {color};">
+            <div class="blood-bank-card">
                 <h3>{blood_bank['Name']}</h3>
                 <p><strong>Location:</strong> {blood_bank['Location']}</p>
                 <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
