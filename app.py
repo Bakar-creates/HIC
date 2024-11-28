@@ -35,7 +35,7 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
-# Hide the blood bank results by default using a unique id for CSS targeting
+# Style for the blood bank cards (No animation)
 st.markdown("""
     <style>
         /* Style for the blood bank cards */
@@ -45,11 +45,6 @@ st.markdown("""
             margin: 10px 0;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .blood-bank-card.show {
-            opacity: 1;
         }
         /* Improved styling for readability */
         .blood-bank-card h3 {
@@ -94,20 +89,6 @@ with st.spinner('Filtering the blood banks...'):
         data = data[data["Available Blood Groups"].str.contains(selected_blood_group, case=False)]
     if selected_area != "All":
         data = data[data["Location"].str.contains(selected_area, case=False)]
-
-# Add JavaScript to trigger the animation after the page has loaded
-st.markdown("""
-    <script>
-        window.addEventListener("load", () => {
-            const cards = document.querySelectorAll('.blood-bank-card');
-            setTimeout(() => {
-                cards.forEach(card => {
-                    card.classList.add('show');
-                });
-            }, 500);  // Delay for 500ms before showing cards
-        });
-    </script>
-""", unsafe_allow_html=True)
 
 # Display blood bank details only if the filters match
 if selected_area != "All" or selected_blood_group != "All":
