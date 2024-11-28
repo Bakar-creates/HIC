@@ -105,19 +105,22 @@ st.markdown("""
     </script>
 """, unsafe_allow_html=True)
 
-# Display blood bank details with the animation class
-if not data.empty:
-    st.markdown("### Blood Bank Details:")
-    for _, blood_bank in data.iterrows():
-        st.markdown(f"""
-        <div class="blood-bank-card">
-            <h3>{blood_bank['Name']}</h3>
-            <p><strong>Location:</strong> {blood_bank['Location']}</p>
-            <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
-            <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
-            <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
-            <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
-        </div>
-        """, unsafe_allow_html=True)
+# Display blood bank details only if the filters match
+if selected_area != "All" or selected_blood_group != "All":
+    if not data.empty:
+        st.markdown("### Blood Bank Details:")
+        for _, blood_bank in data.iterrows():
+            st.markdown(f"""
+            <div class="blood-bank-card">
+                <h3>{blood_bank['Name']}</h3>
+                <p><strong>Location:</strong> {blood_bank['Location']}</p>
+                <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
+                <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
+                <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
+                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
+            </div>
+            """, unsafe_allow_html=True)
+    else:
+        st.warning("No results found based on the selected filters.")
 else:
-    st.warning("No results found based on the selected filters.")
+    st.warning("Please select a filter to search for blood banks.")
