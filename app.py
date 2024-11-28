@@ -35,21 +35,28 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
-# Style for the blood bank cards (No animation)
+# Style for the blood bank cards with a more attractive look and animation
 st.markdown("""
     <style>
         /* Style for the blood bank cards */
         .blood-bank-card {
-            background-color: white;  /* White background for the cards */
+            background-color: #f0f8ff;  /* Soft light blue background */
             padding: 20px;
-            margin: 10px 0;
+            margin: 20px 0;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        .blood-bank-card.show {
+            opacity: 1;
+            transform: translateY(0);
         }
         /* Improved styling for readability */
         .blood-bank-card h3 {
             color: #2c3e50;
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 10px;
         }
         .blood-bank-card p {
@@ -109,3 +116,17 @@ if selected_area != "All" or selected_blood_group != "All":
         st.warning("No results found based on the selected filters.")
 else:
     st.warning("Please select a filter to search for blood banks.")
+
+# Add JavaScript to trigger the animation after the page has loaded
+st.markdown("""
+    <script>
+        window.addEventListener("load", () => {
+            const cards = document.querySelectorAll('.blood-bank-card');
+            setTimeout(() => {
+                cards.forEach(card => {
+                    card.classList.add('show');
+                });
+            }, 500);  // Delay for 500ms before showing cards
+        });
+    </script>
+""", unsafe_allow_html=True)
