@@ -40,7 +40,7 @@ st.markdown("""
     <style>
         /* Background Image */
         body {
-            background-image: url('https://raw.githubusercontent.com/Bakar-creates/HIC/main/assets/background-image.jpg');  /* Your raw GitHub URL */
+            background-image: url(' https://raw.githubusercontent.com/Bakar-creates/HIC/main/assets/background-image.jpg ');  /* Your raw GitHub URL */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
