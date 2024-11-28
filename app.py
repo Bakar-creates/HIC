@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from time import sleep
 
-# Blood bank data across Pakistan
+# Expanded blood bank data across Pakistan
 blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "City": "Karachi", "Location": "Gulshan", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
@@ -15,20 +15,23 @@ blood_banks = [
     {"Name": "Rawalpindi Blood Bank", "City": "Rawalpindi", "Location": "Saddar", "Timings": "24/7", "Contact": "+92-333-7654321", "Available Blood Groups": "A+, A-, O+", "Website": "https://rawalpindibloodbank.com"},
     {"Name": "Peshawar Blood Bank", "City": "Peshawar", "Location": "Hayatabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-334-1112233", "Available Blood Groups": "O+, B-, AB+", "Website": "https://peshawarbloodbank.com"},
     {"Name": "Quetta Blood Bank", "City": "Quetta", "Location": "Civil Lines", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-335-5551234", "Available Blood Groups": "A-, B+, O-", "Website": "https://quettabloodbank.com"},
-    {"Name": "Islamabad Blood Bank", "City": "Islamabad", "Location": "Blue Area", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-336-7651234", "Available Blood Groups": "AB+, A-, O+", "Website": "https://islamabadbloodbank.com"}
+    {"Name": "Islamabad Blood Bank", "City": "Islamabad", "Location": "Blue Area", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-336-7651234", "Available Blood Groups": "AB+, A-, O+", "Website": "https://islamabadbloodbank.com"},
+    # New entries
+    {"Name": "Multan Blood Bank", "City": "Multan", "Location": "Cantt", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-345-6789012", "Available Blood Groups": "B+, O+", "Website": "https://multanbloodbank.com"},
+    {"Name": "Faisalabad Blood Bank", "City": "Faisalabad", "Location": "Peoples Colony", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-334-5678901", "Available Blood Groups": "A-, AB+, O-", "Website": "https://faisalabadbloodbank.com"},
+    {"Name": "Hyderabad Blood Bank", "City": "Hyderabad", "Location": "Latifabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-342-6789012", "Available Blood Groups": "A+, B-", "Website": "https://hyderabadbloodbank.com"},
+    {"Name": "Sialkot Blood Bank", "City": "Sialkot", "Location": "Cantt", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-300-1236789", "Available Blood Groups": "B-, AB+", "Website": "https://sialkotbloodbank.com"},
+    {"Name": "Gujranwala Blood Bank", "City": "Gujranwala", "Location": "Satellite Town", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-333-8765432", "Available Blood Groups": "A+, O+", "Website": "https://gujranwalabloodbank.com"},
+    {"Name": "Abbottabad Blood Bank", "City": "Abbottabad", "Location": "Mansehra Road", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-335-9876543", "Available Blood Groups": "A-, B+", "Website": "https://abbottabadbloodbank.com"},
 ]
 
 # Convert data to DataFrame
 df = pd.DataFrame(blood_banks)
 
-# Extract unique cities and areas for dropdown filters
-cities = sorted(df["City"].unique())
-areas = sorted(df["Location"].unique())
-
 # Cache blood bank data
-@st.cache
+@st.cache_data
 def get_blood_banks():
-    return df.copy()  # Use a copy to avoid overwriting the cached data
+    return df
 
 # App configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
@@ -36,17 +39,25 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # App title
 st.markdown("<h1>🩸 Blood Bank Finder - Pakistan 🩸</h1>", unsafe_allow_html=True)
 
-# Filters
+# Extract unique cities
+cities = sorted(df["City"].unique())
+
+# City filter
 st.subheader("📍 Search by City")
 selected_city = st.selectbox("Select a City:", ["All"] + cities, index=0)
 
+# Area filter
 st.subheader("📍 Search by Area")
 if selected_city != "All":
-    filtered_areas = sorted(df[df["City"] == selected_city]["Location"].unique())
+    filtered_df = df[df["City"] == selected_city]
+    filtered_areas = sorted(filtered_df["Location"].unique())
 else:
-    filtered_areas = areas
+    filtered_df = df
+    filtered_areas = sorted(df["Location"].unique())
+
 selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=0)
 
+# Blood group filter
 st.subheader("🔍 Search by Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
@@ -56,19 +67,15 @@ with st.spinner('Filtering blood banks...'):
     sleep(1)
     data = get_blood_banks()
 
-    # Apply City filter
+    # Apply filters
     if selected_city != "All":
         data = data[data["City"] == selected_city]
-    
-    # Apply Area filter
     if selected_area != "All":
         data = data[data["Location"] == selected_area]
-    
-    # Apply Blood Group filter
     if selected_blood_group != "All":
         data = data[data["Available Blood Groups"].str.contains(selected_blood_group, case=False, na=False)]
 
-    # Display results or warnings
+    # Display results
     if not data.empty:
         st.markdown("### Blood Bank Details:")
         for _, blood_bank in data.iterrows():
