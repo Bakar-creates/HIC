@@ -34,7 +34,7 @@ def get_blood_banks():
     return df
 
 # App configuration
-st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
+st.set_page_config(page_title="Blood Bank Finder Pakistan", page_icon="🩸", layout="centered")
 
 # Add custom CSS for styling
 st.markdown("""
@@ -108,7 +108,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App title
-st.markdown('<div class="title">🩸 Blood Bank Finder - Pakistan 🩸</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">🩸 Blood Bank Finder Pakistan 🩸</div>', unsafe_allow_html=True)
 
 # Extract unique cities
 cities = sorted(df["City"].unique())
