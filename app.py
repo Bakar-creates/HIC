@@ -38,46 +38,43 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 # Style for the blood bank cards with background image
 st.markdown("""
     <style>
-        /* Set the background color of the body */
+        /* Background Image */
         body {
-            background-color: #98FB98 !important;  /* Pale Green */
+            background-image: url('https://raw.githubusercontent.com/Bakar-creates/HIC/main/assets/background-image.jpg');  /* Your raw GitHub URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-        
         /* Style for the blood bank cards */
         .blood-bank-card {
-            background-color: white;
+            background-color: white;  /* White background for the cards */
             padding: 20px;
             margin: 10px 0;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
         /* Improved styling for readability */
         .blood-bank-card h3 {
             color: #2c3e50;
             font-size: 22px;
             margin-bottom: 10px;
         }
-        
         .blood-bank-card p {
             color: #34495e;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        
         .blood-bank-card a {
             color: #3498db;
             text-decoration: none;
             font-weight: bold;
         }
-        
         .blood-bank-card a:hover {
             text-decoration: underline;
         }
     </style>
 """, unsafe_allow_html=True)
-
 
 # Blood Bank Finder
 st.markdown("Welcome to the **Blood Bank Finder** app!")
