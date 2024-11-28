@@ -21,12 +21,8 @@ blood_banks = [
 # Convert data to DataFrame
 df = pd.DataFrame(blood_banks)
 
-# Extract unique cities and areas for dropdown filters
-cities = sorted(df["City"].unique())
-areas = sorted(df["Location"].unique())
-
 # Cache blood bank data
-@st.cache
+@st.cache_data
 def get_blood_banks():
     return df
 
@@ -36,17 +32,25 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # App title
 st.markdown("<h1>🩸 Blood Bank Finder - Pakistan 🩸</h1>", unsafe_allow_html=True)
 
-# Filters
+# Extract unique cities
+cities = sorted(df["City"].unique())
+
+# City filter
 st.subheader("📍 Search by City")
 selected_city = st.selectbox("Select a City:", ["All"] + cities, index=0)
 
+# Area filter
 st.subheader("📍 Search by Area")
 if selected_city != "All":
-    filtered_areas = sorted(df[df["City"] == selected_city]["Location"].unique())
+    filtered_df = df[df["City"] == selected_city]
+    filtered_areas = sorted(filtered_df["Location"].unique())
 else:
-    filtered_areas = areas
+    filtered_df = df
+    filtered_areas = sorted(df["Location"].unique())
+
 selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=0)
 
+# Blood group filter
 st.subheader("🔍 Search by Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
@@ -56,19 +60,15 @@ with st.spinner('Filtering blood banks...'):
     sleep(1)
     data = get_blood_banks()
 
-    # Apply City filter
+    # Apply filters
     if selected_city != "All":
         data = data[data["City"] == selected_city]
-    
-    # Apply Area filter
     if selected_area != "All":
         data = data[data["Location"] == selected_area]
-    
-    # Apply Blood Group filter
     if selected_blood_group != "All":
         data = data[data["Available Blood Groups"].str.contains(selected_blood_group, case=False, na=False)]
 
-    # Display results or warnings
+    # Display results
     if not data.empty:
         st.markdown("### Blood Bank Details:")
         for _, blood_bank in data.iterrows():
