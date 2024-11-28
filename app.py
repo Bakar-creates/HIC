@@ -1,15 +1,16 @@
 import streamlit as st
 import pandas as pd
 from time import sleep
-import hashlib
-import os
-import re
 
-# Dummy blood bank data
+# Expanded blood bank data with more blood banks and Karachi areas
 blood_banks = [
     {"Name": "City Blood Bank", "Location": "Shahrah-e-Faisal, Karachi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "Location": "Gulshan, Karachi", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
-    {"Name": "Punjab Blood Bank", "Location": "Model Town, Lahore", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-5556789", "Available Blood Groups": "O+, O-", "Website": "https://punjabbloodbank.com"}
+    {"Name": "Punjab Blood Bank", "Location": "Model Town, Lahore", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-5556789", "Available Blood Groups": "O+, O-", "Website": "https://punjabbloodbank.com"},
+    {"Name": "Karachi Blood Bank", "Location": "Korangi, Karachi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-6781234", "Available Blood Groups": "A+, O+, B+", "Website": "https://karachibloodbank.com"},
+    {"Name": "Northern Blood Bank", "Location": "North Nazimabad, Karachi", "Timings": "24/7", "Contact": "+92-323-1234567", "Available Blood Groups": "AB-, A-, O+", "Website": "https://northernbloodbank.com"},
+    {"Name": "Sindh Blood Bank", "Location": "Clifton, Karachi", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-324-9876543", "Available Blood Groups": "A-, O-, B+", "Website": "https://sindhbloodbank.com"},
+    {"Name": "Jinnah Blood Bank", "Location": "Jamshed Road, Karachi", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-331-2345678", "Available Blood Groups": "B-, AB+, O+", "Website": "https://jinnahbloodbank.com"}
 ]
 
 # Convert data to DataFrame for manipulation
@@ -37,12 +38,34 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 # Hide the blood bank results by default using a unique id for CSS targeting
 st.markdown("""
     <style>
+        /* Style for the blood bank cards */
         .blood-bank-card {
+            background-color: white;  /* White background for the cards */
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
         .blood-bank-card.show {
             opacity: 1;
+        }
+        /* Style for the text and links inside the card */
+        .blood-bank-card h3 {
+            color: #333;
+            font-size: 20px;
+        }
+        .blood-bank-card p {
+            color: #555;
+            font-size: 16px;
+        }
+        .blood-bank-card a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .blood-bank-card a:hover {
+            text-decoration: underline;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -58,9 +81,6 @@ selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0)
 st.subheader("🔍 Search for a Specific Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
-
-if st.button("Clear Filters"):
-    st.experimental_rerun()
 
 with st.spinner('Filtering the blood banks...'):
     sleep(1)
