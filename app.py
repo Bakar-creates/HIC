@@ -38,12 +38,13 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 # Style for the blood bank cards with background image
 st.markdown("""
     <style>
-        /* Background Image */
+        /* Change the background color of the entire app */
         body {
-            background-image: url('https://raw.githubusercontent.com/Bakar-creates/HIC/main/assets/background-image.jpg');  /* Your raw GitHub URL */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #F0F8FF;  /* AliceBlue color */
+        }
+    </style>
+""", unsafe_allow_html=True)
+
         }
         /* Style for the blood bank cards */
         .blood-bank-card {
