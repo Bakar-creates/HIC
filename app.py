@@ -3,6 +3,9 @@ import pandas as pd
 from time import sleep
 
 # Expanded blood bank data across Pakistan
+
+   
+# Expanded blood bank data across Pakistan
 blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "City": "Karachi", "Location": "Gulshan", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
@@ -24,7 +27,6 @@ blood_banks = [
     {"Name": "Gujranwala Blood Bank", "City": "Gujranwala", "Location": "Satellite Town", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-333-8765432", "Available Blood Groups": "A+, O+", "Website": "https://gujranwalabloodbank.com"},
     {"Name": "Abbottabad Blood Bank", "City": "Abbottabad", "Location": "Mansehra Road", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-335-9876543", "Available Blood Groups": "A-, B+", "Website": "https://abbottabadbloodbank.com"},
 ]
-
 # Convert data to DataFrame
 df = pd.DataFrame(blood_banks)
 
@@ -36,8 +38,46 @@ def get_blood_banks():
 # App configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
+# Add custom CSS for styling
+st.markdown("""
+    <style>
+        /* Center the app title */
+        .title {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Make cards responsive with hover glow effect */
+        .card {
+            background-color: cyan;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ensure the layout is mobile-friendly */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8em;
+            }
+            .card {
+                padding: 10px;
+            }
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # App title
-st.markdown("<h1>🩸Blood Bank Finder - Pakistan🩸</h1>", unsafe_allow_html=True)
+st.markdown('<div class="title">🩸 Blood Bank Finder - Pakistan 🩸</div>', unsafe_allow_html=True)
 
 # Extract unique cities
 cities = sorted(df["City"].unique())
@@ -80,7 +120,7 @@ with st.spinner('Filtering blood banks...'):
         st.markdown("### Blood Bank Details:")
         for _, blood_bank in data.iterrows():
             st.markdown(f"""
-            <div style="background-color: cyan; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="card">
                 <h3>{blood_bank['Name']}</h3>
                 <p><strong>City:</strong> {blood_bank['City']}</p>
                 <p><strong>Location:</strong> {blood_bank['Location']}</p>
