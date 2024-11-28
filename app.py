@@ -39,16 +39,17 @@ st.set_page_config(page_title="Blood Bank Finder Pakistan", page_icon="🩸", la
 # Add custom CSS for styling
 st.markdown("""
     <style>
-        /* Import Google Fonts */
+        /* Define default font settings */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap');
-
-        /* Apply fonts */
+        
         body {
             font-family: 'Roboto', sans-serif;
             color: #333;
+            background-color: #ffffff; /* Light mode background */
+            transition: all 0.3s ease-in-out;
         }
 
-        /* Center the app title */
+        /* Styling for the title */
         .title {
             text-align: center;
             font-size: 2.5em;
@@ -58,7 +59,7 @@ st.markdown("""
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Make cards responsive with hover effect */
+        /* Card style */
         .card {
             background-color: #e0f7fa;
             padding: 20px;
@@ -68,13 +69,13 @@ st.markdown("""
             transition: transform 0.3s, box-shadow 0.3s;
             font-family: 'Roboto', sans-serif;
         }
-        
+
         .card:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Stylish select boxes */
+        /* Select box and multiselect style */
         .stSelectbox, .stMultiselect {
             background-color: #f0f8ff;
             border-radius: 12px;
@@ -95,11 +96,68 @@ st.markdown("""
             border: 2px solid #007bff;
         }
 
-        /* Ensure the layout is mobile-friendly */
-        @media (max-width: 768px) {
+        /* Styling for text input boxes */
+        .stTextInput {
+            background-color: #f0f8ff;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling the map */
+        .stMap {
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom button styling */
+        .stButton {
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 1.1em;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .stButton:hover {
+            background-color: #0056b3;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling for footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.1em;
+            color: #777;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styling the loading indicator */
+        .loading-spinner {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Styling for mobile responsiveness */
+        @media screen and (max-width: 768px) {
             .title {
-                font-size: 2.2em;
+                font-size: 2em;
             }
+
             .card {
                 padding: 15px;
             }
@@ -107,59 +165,54 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# App title
-st.markdown('<div class="title">🩸 Blood Bank Finder Pakistan 🩸</div>', unsafe_allow_html=True)
+# Title of the app
+st.markdown("<h1 class='title'>Blood Bank Finder</h1>", unsafe_allow_html=True)
 
-# Extract unique cities
-cities = sorted(df["City"].unique())
+# Sidebar filters
+st.sidebar.header("Filters")
 
 # City filter
-st.subheader("📍 Search by City")
-selected_city = st.selectbox("Select a City:", ["All"] + cities, index=0)
-
-# Area filter
-st.subheader("📍 Search by Area")
-if selected_city != "All":
-    filtered_df = df[df["City"] == selected_city]
-    filtered_areas = sorted(filtered_df["Location"].unique())
-else:
-    filtered_df = df
-    filtered_areas = sorted(df["Location"].unique())
-
-selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=0)
+cities = df['City'].unique()
+city = st.sidebar.selectbox("Select City", ["All"] + list(cities))
 
 # Blood group filter
-st.subheader("🔍 Search by Blood Group")
-blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
-selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+blood_groups = df['Available Blood Groups'].unique()
+blood_group = st.sidebar.multiselect("Select Blood Group(s)", ["All"] + list(blood_groups))
 
-# Filter and display results
-with st.spinner('Filtering blood banks...'):
-    sleep(1)
-    data = get_blood_banks()
+# Search bar for blood bank name
+search_term = st.sidebar.text_input("Search by Blood Bank Name")
 
-    # Apply filters
-    if selected_city != "All":
-        data = data[data["City"] == selected_city]
-    if selected_area != "All":
-        data = data[data["Location"] == selected_area]
-    if selected_blood_group != "All":
-        data = data[data["Available Blood Groups"].str.contains(selected_blood_group, case=False, na=False)]
+# Filter the dataframe based on user input
+filtered_df = df
 
-    # Display results
-    if not data.empty:
-        st.markdown("### Blood Bank Details:")
-        for _, blood_bank in data.iterrows():
-            st.markdown(f"""
-            <div class="card">
-                <h3>{blood_bank['Name']}</h3>
-                <p><strong>City:</strong> {blood_bank['City']}</p>
-                <p><strong>Location:</strong> {blood_bank['Location']}</p>
-                <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
-                <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
-                <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
-                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
-            </div>
-            """, unsafe_allow_html=True)
+if city != "All":
+    filtered_df = filtered_df[filtered_df['City'] == city]
+
+if blood_group != ["All"]:
+    filtered_df = filtered_df[filtered_df['Available Blood Groups'].apply(lambda x: any(bg in x for bg in blood_group))]
+
+if search_term:
+    filtered_df = filtered_df[filtered_df['Name'].str.contains(search_term, case=False)]
+
+# Display results with a loading indicator
+with st.spinner("Loading blood banks..."):
+    sleep(2)  # Simulate loading time
+
+    if len(filtered_df) > 0:
+        for index, row in filtered_df.iterrows():
+            with st.expander(row['Name']):
+                st.markdown(f"**City**: {row['City']}")
+                st.markdown(f"**Location**: {row['Location']}")
+                st.markdown(f"**Timings**: {row['Timings']}")
+                st.markdown(f"**Contact**: {row['Contact']}")
+                st.markdown(f"**Available Blood Groups**: {row['Available Blood Groups']}")
+                st.markdown(f"[Website]({row['Website']})")
     else:
-        st.warning("No results found for the selected filters.")
+        st.warning("No blood banks found based on your criteria.")
+
+# Footer
+st.markdown("""
+    <footer>
+        <p>Created with ❤️ by <a href='https://www.linkedin.com'>Your Name</a></p>
+    </footer>
+""", unsafe_allow_html=True)
