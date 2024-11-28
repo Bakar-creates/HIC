@@ -42,10 +42,7 @@ st.markdown("""
         body {
             background-color: #F0F8FF;  /* AliceBlue color */
         }
-    </style>
-""", unsafe_allow_html=True)
 
-       
         /* Style for the blood bank cards */
         .blood-bank-card {
             background-color: cyan;  /* Cyan background for the cards */
