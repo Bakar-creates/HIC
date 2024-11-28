@@ -49,7 +49,7 @@ st.markdown("""
 
         /* Make cards responsive with hover glow effect */
         .card {
-            background-color: red;
+            background-color: cyan;
             padding: 15px;
             margin: 10px 0;
             border-radius: 8px;
