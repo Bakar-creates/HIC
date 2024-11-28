@@ -35,32 +35,24 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
-# Style for the blood bank cards with a more attractive look and animation
+# Style for the blood bank cards with colors
 st.markdown("""
     <style>
         /* Style for the blood bank cards */
         .blood-bank-card {
-            background-color: #f0f8ff;  /* Soft light blue background */
             padding: 20px;
             margin: 20px 0;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
-        .blood-bank-card.show {
-            opacity: 1;
-            transform: translateY(0);
+            color: white;
+            font-weight: bold;
         }
         /* Improved styling for readability */
         .blood-bank-card h3 {
-            color: #2c3e50;
             font-size: 24px;
             margin-bottom: 10px;
         }
         .blood-bank-card p {
-            color: #34495e;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 8px;
@@ -97,13 +89,26 @@ with st.spinner('Filtering the blood banks...'):
     if selected_area != "All":
         data = data[data["Location"].str.contains(selected_area, case=False)]
 
+# Helper function to get background color based on available blood groups
+def get_card_color(blood_groups):
+    if "A+" in blood_groups or "O+" in blood_groups:
+        return "#2980b9"  # Blue for common positive groups
+    elif "B+" in blood_groups or "AB+" in blood_groups:
+        return "#e74c3c"  # Red for rare positive groups
+    elif "A-" in blood_groups or "O-" in blood_groups:
+        return "#8e44ad"  # Purple for negative groups
+    elif "B-" in blood_groups or "AB-" in blood_groups:
+        return "#f39c12"  # Yellow for rare negative groups
+    return "#95a5a6"  # Default grey for unknown or less common blood types
+
 # Display blood bank details only if the filters match
 if selected_area != "All" or selected_blood_group != "All":
     if not data.empty:
         st.markdown("### Blood Bank Details:")
         for _, blood_bank in data.iterrows():
+            color = get_card_color(blood_bank['Available Blood Groups'].split(","))
             st.markdown(f"""
-            <div class="blood-bank-card">
+            <div class="blood-bank-card" style="background-color: {color};">
                 <h3>{blood_bank['Name']}</h3>
                 <p><strong>Location:</strong> {blood_bank['Location']}</p>
                 <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
@@ -116,17 +121,3 @@ if selected_area != "All" or selected_blood_group != "All":
         st.warning("No results found based on the selected filters.")
 else:
     st.warning("Please select a filter to search for blood banks.")
-
-# Add JavaScript to trigger the animation after the page has loaded
-st.markdown("""
-    <script>
-        window.addEventListener("load", () => {
-            const cards = document.querySelectorAll('.blood-bank-card');
-            setTimeout(() => {
-                cards.forEach(card => {
-                    card.classList.add('show');
-                });
-            }, 500);  // Delay for 500ms before showing cards
-        });
-    </script>
-""", unsafe_allow_html=True)
