@@ -19,14 +19,28 @@ def is_strong_password(password):
 
 # Dummy blood bank data
 blood_banks = [
-    # (Same data as in the original code)
+    {"Name": "City Blood Bank", "Location": "Shahrah-e-Faisal, Karachi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
+    {"Name": "Safe Blood Bank", "Location": "North Nazimabad, Karachi", "Timings": "24/7", "Contact": "+92-300-7654321", "Available Blood Groups": "B+, B-, AB+, O+, O-", "Website": "https://safebloodbank.com"},
+    {"Name": "National Blood Center", "Location": "Clifton, Karachi", "Timings": "10:00 AM - 8:00 PM", "Contact": "+92-21-3456789", "Available Blood Groups": "A+, AB-, O-, O+", "Website": "https://nationalbloodcenter.com"},
+    {"Name": "Karachi Blood Bank", "Location": "Korangi, Karachi", "Timings": "8:00 AM - 6:00 PM", "Contact": "+92-300-4567890", "Available Blood Groups": "A+, B-, O+, O-", "Website": "https://karachibloodbank.com"},
+    {"Name": "Lifesaver Blood Bank", "Location": "Gulshan-e-Iqbal, Karachi", "Timings": "9:00 AM - 10:00 PM", "Contact": "+92-300-6789012", "Available Blood Groups": "O+, AB-, A-, O-", "Website": "https://lifesaverbloodbank.com"},
 ]
 
 # Convert data to DataFrame for manipulation
 df = pd.DataFrame(blood_banks)
 
-# Extract unique areas for dropdown
-areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
+# Debugging: Check DataFrame structure
+st.write("DataFrame structure:")
+st.write(df)
+
+# Check if the "Location" column exists
+if "Location" in df.columns:
+    # Extract unique areas for dropdown
+    df["Location"] = df["Location"].fillna("Unknown")  # Handle missing values in 'Location'
+    areas = sorted(df['Location'].apply(lambda x: x.split(',')[0]).unique())
+else:
+    st.error("The 'Location' column is missing in the dataset.")
+    areas = ["Unknown"]  # Fallback value if 'Location' is missing
 
 # Load user data
 user_data_file = "user_data.csv"
