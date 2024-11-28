@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 from time import sleep
 
-# Expanded blood bank data across Pakistan
 
-   
 # Expanded blood bank data across Pakistan
 blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
@@ -51,7 +49,7 @@ st.markdown("""
 
         /* Make cards responsive with hover glow effect */
         .card {
-            background-color: cyan;
+            background-color: red;
             padding: 15px;
             margin: 10px 0;
             border-radius: 8px;
