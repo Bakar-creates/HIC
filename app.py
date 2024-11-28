@@ -108,8 +108,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App title
-st.markdown('<div class="title">
-🩸 Blood Bank 
+st.markdown('<div class="title">🩸 Blood Bank 
 Finder Pakistan 🩸</div>', unsafe_allow_html=True)
 
 # Extract unique cities
