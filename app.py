@@ -38,15 +38,10 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 # Style for the app and dropdowns
 st.markdown("""
     <style>
-        /* App background color */
-        body {
-            background-color: #f9f9f9;  /* Light gray background */
-        }
-
         /* Dropdown box styling */
         div[data-baseweb="select"] > div {
             background-color: #FFFACD; /* Lemon chiffon background */
-            color: #000000; /* Black text */
+            color: #000000; /* Black text for visibility */
             border-radius: 8px;
             padding: 5px;
             border: 2px solid #DAA520; /* Golden border */
@@ -58,13 +53,13 @@ st.markdown("""
         }
 
         div[data-baseweb="menu"] > ul > li {
-            color: #2c3e50; /* Dark blue text */
+            color: #000000; /* Black text for dropdown items */
         }
 
         /* Hover effect for dropdown items */
         div[data-baseweb="menu"] > ul > li:hover {
             background-color: #FFD700; /* Gold background on hover */
-            color: #FFFFFF; /* White text */
+            color: #FFFFFF; /* White text on hover */
         }
 
         /* Style for the blood bank cards */
