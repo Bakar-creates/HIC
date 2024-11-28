@@ -34,13 +34,21 @@ st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="cen
 # Title and Introduction
 st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
+# Hide the blood bank results by default using a unique id for CSS targeting
+st.markdown("""
+    <style>
+        .blood-bank-card {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .blood-bank-card.show {
+            opacity: 1;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Blood Bank Finder
 st.markdown("Welcome to the **Blood Bank Finder** app!")
-
-# Option to Logout (Not used since there's no login now, but can be left in case needed)
-if st.button("Logout"):
-    st.session_state.clear()
-    st.experimental_rerun()
 
 # Search by Area
 st.subheader("📍 Search by Area")
@@ -63,11 +71,26 @@ with st.spinner('Filtering the blood banks...'):
     if selected_area != "All":
         data = data[data["Location"].str.contains(selected_area, case=False)]
 
+# Add JavaScript to trigger the animation after the page has loaded
+st.markdown("""
+    <script>
+        window.addEventListener("load", () => {
+            const cards = document.querySelectorAll('.blood-bank-card');
+            setTimeout(() => {
+                cards.forEach(card => {
+                    card.classList.add('show');
+                });
+            }, 500);  // Delay for 500ms before showing cards
+        });
+    </script>
+""", unsafe_allow_html=True)
+
+# Display blood bank details with the animation class
 if not data.empty:
     st.markdown("### Blood Bank Details:")
     for _, blood_bank in data.iterrows():
         st.markdown(f"""
-        <div>
+        <div class="blood-bank-card">
             <h3>{blood_bank['Name']}</h3>
             <p><strong>Location:</strong> {blood_bank['Location']}</p>
             <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
