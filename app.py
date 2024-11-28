@@ -37,7 +37,7 @@ st.markdown("""
     <style>
         /* Background Image */
         body {
-            background-image: url('https://github.com/Bakar-creates/HIC/blob/main/assets/background-image.jpg '); /* Replace with your image URL */
+            background-image: url('https://raw.githubusercontent.com/github.com/Bakar-creates/HIC/blob/main/assets/background-image.jpg '); /* Replace with your image URL */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
