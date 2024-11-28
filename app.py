@@ -51,18 +51,22 @@ st.markdown("""
         .blood-bank-card.show {
             opacity: 1;
         }
-        /* Style for the text and links inside the card */
+        /* Improved styling for readability */
         .blood-bank-card h3 {
-            color: #333;
-            font-size: 20px;
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 10px;
         }
         .blood-bank-card p {
-            color: #555;
-            font-size: 16px;
+            color: #34495e;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 8px;
         }
         .blood-bank-card a {
-            color: #1e90ff;
+            color: #3498db;
             text-decoration: none;
+            font-weight: bold;
         }
         .blood-bank-card a:hover {
             text-decoration: underline;
