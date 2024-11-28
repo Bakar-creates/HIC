@@ -37,7 +37,7 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 
 # Style for the blood bank cards with background image
 st.markdown("""
-    st.markdown("""
+    
     <style>
         /* Dropdown box styling */
         div[data-baseweb="select"] > div {
