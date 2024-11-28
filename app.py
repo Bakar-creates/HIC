@@ -37,7 +37,44 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 
 # Style for the blood bank cards with background image
 st.markdown("""
+    st.markdown("""
     <style>
+        /* Dropdown box styling */
+        div[data-baseweb="select"] > div {
+            background-color: #F0E68C; /* Light khaki background */
+            color: #2c3e50; /* Dark blue text */
+            border-radius: 8px;
+            padding: 5px;
+            border: 2px solid #DAA520; /* Golden border */
+        }
+
+        /* Dropdown items styling */
+        div[data-baseweb="menu"] > ul {
+            background-color: #FFFACD; /* Lemon chiffon background */
+        }
+
+        div[data-baseweb="menu"] > ul > li {
+            color: #2c3e50; /* Dark blue text */
+        }
+
+        /* Hover effect for dropdown items */
+        div[data-baseweb="menu"] > ul > li:hover {
+            background-color: #FFD700; /* Gold background on hover */
+            color: #FFFFFF; /* White text */
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Search by Area
+st.subheader("📍 Search by Area")
+selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0)
+
+# Search for a Specific Blood Group
+st.subheader("🔍 Search for a Specific Blood Group")
+blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+
+<style>
         /* Background Image */
         body {
             background-image: url('https://raw.githubusercontent.com/Bakar-creates/HIC/main/assets/background-image.jpg');  /* Your raw GitHub URL */
