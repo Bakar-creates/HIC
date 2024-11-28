@@ -38,9 +38,10 @@ st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_h
 # Style for the blood bank cards with background image
 st.markdown("""
     <style>
-        /* Change the background color of the entire app */
+        st.markdown("""
+    <style>
         body {
-            background-color: #F0F8FF;  /* AliceBlue color */
+            background-color: #98FB98;  /* Pale Green */
         }
 
         /* Style for the blood bank cards */
