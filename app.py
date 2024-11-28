@@ -66,12 +66,13 @@ st.markdown("""
 
 # Search by Area
 st.subheader("📍 Search by Area")
-selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0)
+selected_area = st.selectbox("Select an Area:", ["All"] + areas, index=0, key="area_selectbox")
 
 # Search for a Specific Blood Group
 st.subheader("🔍 Search for a Specific Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
-selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0, key="blood_group_selectbox")
+
 
 st.markdown("""
 
