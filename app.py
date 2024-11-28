@@ -32,13 +32,24 @@ def get_blood_banks():
 # Streamlit App Configuration
 st.set_page_config(page_title="Blood Bank Finder", page_icon="🩸", layout="centered")
 
-# Title and Introduction
-st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
-
-# Style for the blood bank cards with colors
+# Add Background Image and Styles
 st.markdown("""
     <style>
-        /* Style for the blood bank cards */
+        /* Background Image */
+        body {
+            background-image: url('https://example.com/your-background-image.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* Title */
+        .title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        /* Style for the blood bank cards with colors */
         .blood-bank-card {
             padding: 20px;
             margin: 20px 0;
@@ -67,6 +78,9 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
+# Title and Introduction
+st.markdown("<h1 class='title'>🩸 Blood Bank Finder 🩸</h1>", unsafe_allow_html=True)
 
 # Blood Bank Finder
 st.markdown("Welcome to the **Blood Bank Finder** app!")
