@@ -94,7 +94,7 @@ st.markdown("""
 # Header Section
 st.markdown("""
     <div class="header">
-        <h1>🩸 Blood Bank Finder Karachi</h1>
+        <h1>🩸 Blood Bank Finder Karachi 🩸</h1>
         <p>Find blood banks near you with ease in Karachi.</p>
     </div>
 """, unsafe_allow_html=True)
