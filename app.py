@@ -8,8 +8,29 @@ karachi_blood_banks = [
     {"Name": "Karachi Blood Bank", "City": "Karachi", "Location": "Korangi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-6781234", "Available Blood Groups": "A+, O+, B+", "Website": "https://karachibloodbank.com"},
     {"Name": "Northern Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "24/7", "Contact": "+92-323-1234567", "Available Blood Groups": "AB-, A-, O+", "Website": "https://northernbloodbank.com"},
     {"Name": "Sindh Blood Bank", "City": "Karachi", "Location": "Clifton", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-324-9876543", "Available Blood Groups": "A-, O-, B+", "Website": "https://sindhbloodbank.com"},
-    # Add other entries here
+    {"Name": "Jinnah Blood Bank", "City": "Karachi", "Location": "Jamshed Road", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-331-2345678", "Available Blood Groups": "B-, AB+, O+", "Website": "https://jinnahbloodbank.com"},
+    {"Name": "Malir Blood Bank", "City": "Karachi", "Location": "Malir Cantt", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-332-5678901", "Available Blood Groups": "A+, AB+, O+", "Website": "https://malirbloodbank.com"},
+    {"Name": "Orangi Town Blood Bank", "City": "Karachi", "Location": "Orangi Town", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-300-3456789", "Available Blood Groups": "O+, B-", "Website": "https://orangi-bloodbank.com"},
+    {"Name": "Landhi Blood Bank", "City": "Karachi", "Location": "Landhi", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-300-7654321", "Available Blood Groups": "B-, AB+", "Website": "https://landhibloodbank.com"},
+    {"Name": "Gulshan Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Maymar", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-333-9876543", "Available Blood Groups": "A+, O-", "Website": "https://gulshanbloodbank.com"},
+    {"Name": "Korangi Blood Bank", "City": "Karachi", "Location": "Korangi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-334-5678901", "Available Blood Groups": "A+, O-, AB+", "Website": "https://korangibloodbank.com"},
+    {"Name": "Lyari Blood Bank", "City": "Karachi", "Location": "Lyari", "Timings": "24/7", "Contact": "+92-345-2345678", "Available Blood Groups": "O+, AB+, B-", "Website": "https://lyaribloodbank.com"},
+    {"Name": "Bahria Town Blood Bank", "City": "Karachi", "Location": "Bahria Town", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-321-2345678", "Available Blood Groups": "A-, O+, AB-", "Website": "https://bahriatownbloodbank.com"},
+    {"Name": "Saddar Blood Bank", "City": "Karachi", "Location": "Saddar", "Timings": "9:00 AM - 7:00 PM", "Contact": "+92-311-2345678", "Available Blood Groups": "A+, B-, AB+", "Website": "https://saddarbloodbank.com"},
+    {"Name": "Faisal Blood Bank", "City": "Karachi", "Location": "Faisal Cantonment", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-333-2345678", "Available Blood Groups": "A-, O-, AB+", "Website": "https://faisalbloodbank.com"},
+    {"Name": "Gulistan-e-Johar Blood Bank", "City": "Karachi", "Location": "Gulistan-e-Johar", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-320-1234567", "Available Blood Groups": "O-, AB+, B+", "Website": "https://gulistanbloodbank.com"},
+    {"Name": "Shah Faisal Blood Bank", "City": "Karachi", "Location": "Shah Faisal", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-331-1234567", "Available Blood Groups": "A-, O+, B-", "Website": "https://shahfaisalbloodbank.com"},
+    {"Name": "New Karachi Blood Bank", "City": "Karachi", "Location": "New Karachi", "Timings": "8:00 AM - 6:00 PM", "Contact": "+92-300-9876543", "Available Blood Groups": "A+, B+, O-", "Website": "https://newkarachibloodbank.com"},
+    {"Name": "Karachi Institute of Blood Transfusion", "City": "Karachi", "Location": "Karachi University", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-344-5678901", "Available Blood Groups": "AB+, O-, B+", "Website": "https://kitb.org"},
+    {"Name": "North Nazimabad Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "24/7", "Contact": "+92-323-6543210", "Available Blood Groups": "A+, O-, AB+", "Website": "https://northnazimabadbloodbank.com"},
+    {"Name": "Saddar Emergency Blood Bank", "City": "Karachi", "Location": "Saddar", "Timings": "24/7", "Contact": "+92-312-3456789", "Available Blood Groups": "A-, B-, O+", "Website": "https://saddaremergencybloodbank.com"},
+    {"Name": "Gulshan Central Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-7654321", "Available Blood Groups": "A+, AB-, O+", "Website": "https://gulshancentralbloodbank.com"},
+    {"Name": "Gulshan Welfare Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Maymar", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-321-4567890", "Available Blood Groups": "B+, O-", "Website": "https://gulshanwelfarebloodbank.com"},
+    {"Name": "North Nazimabad Trust Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-6543210", "Available Blood Groups": "O-, AB+", "Website": "https://northnazimabadtrustbloodbank.com"},
 ]
+
+
+
 
 # Convert data to DataFrame
 df = pd.DataFrame(karachi_blood_banks)
@@ -50,31 +71,18 @@ st.markdown("""
         font-weight: 300;
     }
 
-    .banner {
-        background-image: url('https://example.com/banner_image.jpg'); /* Replace with your image */
-        background-size: cover;
-        height: 300px;
-        text-align: center;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.5em;
-        font-weight: bold;
-    }
-
     .filter-section select {
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 10px;
         border-radius: 10px;
-        border: 1px solid #007bff;
-        background-color: #00bcd4;
-        color: white;
+        border: 1px solid #007bff;  /* Blue border */
+        background-color: #00bcd4;  /* Light blue background */
+        color: white;  /* White text color */
     }
 
     .filter-section select:focus {
-        border-color: #0a74da;
+        border-color: #0a74da; /* Focused blue border */
         outline: none;
         box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
     }
@@ -97,7 +105,7 @@ st.markdown("""
         display: inline-block;
         margin-top: 10px;
         padding: 10px 20px;
-        background-color: #f9c74f;  
+        background-color: #f9c74f;  /* Yellow */
         color: white;
         text-decoration: none;
         border-radius: 8px;
@@ -105,9 +113,10 @@ st.markdown("""
     }
 
     .visit-button:hover {
-        background-color: #002244;  
+        background-color: #002244;  /* Darker Blue on hover */
     }
 </style>
+
 """, unsafe_allow_html=True)
 
 # Header Section
@@ -115,13 +124,6 @@ st.markdown("""
     <div class="header">
         <h1>Blood Bank Finder Karachi</h1>
         <p>Find blood banks near you with ease in Karachi.</p>
-    </div>
-""", unsafe_allow_html=True)
-
-# Banner Section
-st.markdown("""
-    <div class="banner">
-        <p>Your Health Matters, Donate Blood Today!</p>
     </div>
 """, unsafe_allow_html=True)
 
@@ -135,7 +137,7 @@ selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=
 
 # Blood Group Selection
 st.subheader("🔍 Search by Blood Group")
-blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]  # Example blood groups
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
 
 st.markdown('</div>', unsafe_allow_html=True)
