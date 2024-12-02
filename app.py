@@ -26,7 +26,7 @@ karachi_blood_banks = [
     {"Name": "Saddar Emergency Blood Bank", "City": "Karachi", "Location": "Saddar", "Timings": "24/7", "Contact": "+92-312-3456789", "Available Blood Groups": "A-, B-, O+", "Website": "https://saddaremergencybloodbank.com"},
     {"Name": "Gulshan Central Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-7654321", "Available Blood Groups": "A+, AB-, O+", "Website": "https://gulshancentralbloodbank.com"},
     {"Name": "Gulshan Welfare Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Maymar", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-321-4567890", "Available Blood Groups": "B+, O-", "Website": "https://gulshanwelfarebloodbank.com"},
-    {"Name": "North Nazimabad Trust Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-6543210", "Available Blood Groups": "O-, AB+", "Website": "https://northnazimabadtrustbloodbank.com"},
+    {"Name": "North Nazimabad Trust Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-6543210", "Available Blood Groups": "A+, B+, O-, AB+", "Website": "https://northnazimabadtrustbloodbank.com"},
 ]
 
 
