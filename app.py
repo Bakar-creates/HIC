@@ -2,10 +2,8 @@ import streamlit as st
 import pandas as pd
 from time import sleep
 import re
-import streamlit as st
 
-
-# Sample Data for Blood Banks (same as your original list)
+# Sample Data for Blood Banks
 karachi_blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
@@ -127,9 +125,10 @@ if auth_choice == "Login":
         elif password == "":
             st.error("Password cannot be empty.")
         else:
+            # Set session state to indicate login success
+            st.session_state.logged_in = True
+            st.session_state.email = email
             st.success("Logged in successfully!")
-            # Proceed to next steps after login (for example, showing blood bank list)
-            st.experimental_rerun()
 
 elif auth_choice == "Signup":
     # Signup form
@@ -145,12 +144,13 @@ elif auth_choice == "Signup":
         elif password == "":
             st.error("Password cannot be empty.")
         else:
+            # Set session state to indicate signup success
+            st.session_state.logged_in = True
+            st.session_state.email = email
             st.success("Signup successful! Please login to continue.")
-            # Proceed to login after successful signup (or automatic login in real-world apps)
-            st.experimental_rerun()
 
-# Display Blood Bank Finder after login/signup
-if email and password and validate_email(email):
+# If logged in, show the blood bank finder
+if "logged_in" in st.session_state and st.session_state.logged_in:
     st.markdown("""
     <div class="filter-section">
         <h3>📍 Search by Area</h3>
