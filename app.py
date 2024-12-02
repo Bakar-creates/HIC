@@ -40,8 +40,7 @@ def get_blood_banks():
 # App configuration
 st.set_page_config(page_title="Blood Bank Finder Pakistan", page_icon="🩸", layout="centered")
 
-# Add custom CSS for styling
-# Add custom CSS for styling
+# Custom CSS for styling
 st.markdown("""
     <style>
         /* Background gradient for the app */
@@ -135,11 +134,25 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+# Debugging and Error Handling
+if 'df' not in locals() or df.empty:
+    st.error("Error: Blood bank data could not be loaded. Please check the source.")
+    st.stop()  # Stops execution if the data is invalid
+else:
+    st.write("Dataframe preview:", df.head())
+    cities = sorted(df["City"].unique())
+    st.write("Cities:", cities)
+
 # Filter Section
 st.markdown('<div class="filter-section">', unsafe_allow_html=True)
-st.subheader("📍 Search by City")
-selected_city = st.selectbox("Select a City:", ["All"] + cities, index=0)
 
+# City Selection
+if 'cities' not in locals() or not cities:
+    st.error("No cities available. Please check the data source.")
+else:
+    selected_city = st.selectbox("Select a City:", ["All"] + cities, index=0)
+
+# Area Selection
 st.subheader("📍 Search by Area")
 if selected_city != "All":
     filtered_df = df[df["City"] == selected_city]
@@ -150,8 +163,11 @@ else:
 
 selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=0)
 
+# Blood Group Selection
 st.subheader("🔍 Search by Blood Group")
+blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]  # Example blood groups
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Filter and Display Results
