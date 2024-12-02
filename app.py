@@ -29,9 +29,6 @@ karachi_blood_banks = [
     {"Name": "North Nazimabad Trust Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-6543210", "Available Blood Groups": "A+, B+, O-, AB+", "Website": "https://northnazimabadtrustbloodbank.com"},
 ]
 
-
-
-
 # Convert data to DataFrame
 df = pd.DataFrame(karachi_blood_banks)
 
@@ -43,6 +40,8 @@ def get_blood_banks():
 # App configuration
 st.set_page_config(page_title="Blood Bank Finder Karachi", page_icon="🩸", layout="centered")
 
+# Custom CSS for styling
+st.markdown("""
 # Custom CSS for styling
 st.markdown("""
    <style>
@@ -71,20 +70,38 @@ st.markdown("""
         font-weight: 300;
     }
 
+    .filter-section {
+        background: linear-gradient(to right, #00bcd4, #007bff);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .filter-section:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
     .filter-section select {
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 10px;
         border-radius: 10px;
-        border: 1px solid #007bff;  /* Blue border */
-        background-color: #00bcd4;  /* Light blue background */
-        color: white;  /* White text color */
+        border: 1px solid #007bff;
+        background-color: #ffffff;
+        color: #333;
+        font-size: 1rem;
     }
 
     .filter-section select:focus {
-        border-color: #0a74da; /* Focused blue border */
+        border-color: #00bcd4;
         outline: none;
         box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+    }
+
+    .filter-section select option {
+        background-color: #f9f9f9;
     }
 
     .card {
@@ -105,7 +122,7 @@ st.markdown("""
         display: inline-block;
         margin-top: 10px;
         padding: 10px 20px;
-        background-color: #f9c74f;  /* Yellow */
+        background-color: #f9c74f;
         color: white;
         text-decoration: none;
         border-radius: 8px;
@@ -113,19 +130,11 @@ st.markdown("""
     }
 
     .visit-button:hover {
-        background-color: #002244;  /* Darker Blue on hover */
+        background-color: #002244;
     }
 </style>
-
 """, unsafe_allow_html=True)
 
-# Header Section
-st.markdown("""
-    <div class="header">
-        <h1>Blood Bank Finder Karachi</h1>
-        <p>Find blood banks near you with ease in Karachi.</p>
-    </div>
-""", unsafe_allow_html=True)
 
 # Filter Section
 st.markdown('<div class="filter-section">', unsafe_allow_html=True)
