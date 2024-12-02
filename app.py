@@ -130,6 +130,7 @@ if "logged_in" in st.session_state and st.session_state.logged_in:
         del st.session_state["logged_in"]
         del st.session_state["email"]
         st.success("Logged out successfully!")
+        # Reset app after logout without rerunning
         st.experimental_rerun()
 
 # Signup/Login Form
