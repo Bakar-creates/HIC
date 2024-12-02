@@ -41,68 +41,84 @@ def get_blood_banks():
 st.set_page_config(page_title="Blood Bank Finder Pakistan", page_icon="🩸", layout="centered")
 
 # Add custom CSS for styling
+# Add custom CSS for styling
 st.markdown("""
     <style>
-        /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap');
-
-        /* Apply fonts */
-        body {
-            font-family: 'Roboto', sans-serif;
+        /* Background gradient for the app */
+        .stApp {
+            background: linear-gradient(to bottom right, #e0f7fa, #fff8e1);
             color: #333;
         }
 
-        /* Center the app title */
-        .title {
+        /* App header styling */
+        .header {
             text-align: center;
-            font-size: 2.5em;
-            font-weight: 600;
+            background: linear-gradient(to right, #007bff, #00bcd4);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            color: #007bff;
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Make cards responsive with hover effect */
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* Filter section */
+        .filter-section {
+            background-color: #f5f5f5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Stylish cards */
         .card {
-            background-color: #e0f7fa;
+            background: linear-gradient(to bottom, #ffffff, #e0f7fa);
             padding: 20px;
             margin: 10px 0;
-            border-radius: 12px;
+            border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            font-family: 'Roboto', sans-serif;
         }
-        
+
         .card:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Stylish select boxes */
-        .stSelectbox, .stMultiselect {
-            background-color: #f0f8ff;
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 1.2em;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-family: 'Roboto', sans-serif;
+        /* Button for website links */
+        .visit-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: background 0.3s ease;
         }
 
-        .stSelectbox:hover, .stMultiselect:hover {
-            background-color: #d0e9f7;
-            transform: scale(1.02);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        .visit-button:hover {
+            background-color: #0056b3;
         }
 
-        .stSelectbox:focus, .stMultiselect:focus {
-            border: 2px solid #007bff;
-        }
-
-        /* Ensure the layout is mobile-friendly */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .title {
-                font-size: 2.2em;
+            .header h1 {
+                font-size: 2em;
+            }
+            .header p {
+                font-size: 1em;
             }
             .card {
                 padding: 15px;
@@ -111,17 +127,19 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# App title
-st.markdown('<div class="title">🩸 Blood Bank Finder Pakistan 🩸</div>', unsafe_allow_html=True)
+# Header Section
+st.markdown("""
+    <div class="header">
+        <h1>🩸 Blood Bank Finder Pakistan</h1>
+        <p>Find blood banks near you with ease.</p>
+    </div>
+""", unsafe_allow_html=True)
 
-# Extract unique cities
-cities = sorted(df["City"].unique())
-
-# City filter
+# Filter Section
+st.markdown('<div class="filter-section">', unsafe_allow_html=True)
 st.subheader("📍 Search by City")
 selected_city = st.selectbox("Select a City:", ["All"] + cities, index=0)
 
-# Area filter
 st.subheader("📍 Search by Area")
 if selected_city != "All":
     filtered_df = df[df["City"] == selected_city]
@@ -132,17 +150,15 @@ else:
 
 selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=0)
 
-# Blood group filter
 st.subheader("🔍 Search by Blood Group")
-blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+st.markdown('</div>', unsafe_allow_html=True)
 
-# Filter and display results
+# Filter and Display Results
 with st.spinner('Filtering blood banks...'):
     sleep(1)
     data = get_blood_banks()
 
-    # Apply filters
     if selected_city != "All":
         data = data[data["City"] == selected_city]
     if selected_area != "All":
@@ -150,7 +166,6 @@ with st.spinner('Filtering blood banks...'):
     if selected_blood_group != "All":
         data = data[data["Available Blood Groups"].str.contains(selected_blood_group, case=False, na=False)]
 
-    # Display results
     if not data.empty:
         st.markdown("### Blood Bank Details:")
         for _, blood_bank in data.iterrows():
@@ -162,7 +177,7 @@ with st.spinner('Filtering blood banks...'):
                 <p><strong>Timings:</strong> {blood_bank['Timings']}</p>
                 <p><strong>Available Blood Groups:</strong> {blood_bank['Available Blood Groups']}</p>
                 <p><strong>Contact:</strong> {blood_bank['Contact']}</p>
-                <p><strong>Website:</strong> <a href="{blood_bank['Website']}" target="_blank">Visit Website</a></p>
+                <a class="visit-button" href="{blood_bank['Website']}" target="_blank">Visit Website</a>
             </div>
             """, unsafe_allow_html=True)
     else:
