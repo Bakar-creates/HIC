@@ -97,6 +97,20 @@ st.markdown("""
     .login-btn:hover, .signup-btn:hover {
         background-color: #0056b3;
     }
+
+    .logout-btn {
+        padding: 10px 20px;
+        background-color: #dc3545;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .logout-btn:hover {
+        background-color: #c82333;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -108,46 +122,57 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+# Logout functionality
+if "logged_in" in st.session_state and st.session_state.logged_in:
+    # Display logout button
+    if st.button("Logout", key="logout_btn"):
+        # Clear session state and log out
+        del st.session_state["logged_in"]
+        del st.session_state["email"]
+        st.success("Logged out successfully!")
+        st.experimental_rerun()
+
 # Signup/Login Form
-st.subheader("👤 Login or Signup")
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.subheader("👤 Login or Signup")
 
-# User selection: Login or Signup
-auth_choice = st.selectbox("Choose an option", ["Login", "Signup"], index=0)
+    # User selection: Login or Signup
+    auth_choice = st.selectbox("Choose an option", ["Login", "Signup"], index=0)
 
-if auth_choice == "Login":
-    # Login form
-    email = st.text_input("Enter your email address", key="login_email")
-    password = st.text_input("Enter your password", type="password", key="login_password")
+    if auth_choice == "Login":
+        # Login form
+        email = st.text_input("Enter your email address", key="login_email")
+        password = st.text_input("Enter your password", type="password", key="login_password")
 
-    if st.button("Login", key="login_btn"):
-        if not validate_email(email):
-            st.error("Please enter a valid email address ending with '@bbfk.com'.")
-        elif password == "":
-            st.error("Password cannot be empty.")
-        else:
-            # Set session state to indicate login success
-            st.session_state.logged_in = True
-            st.session_state.email = email
-            st.success("Logged in successfully!")
+        if st.button("Login", key="login_btn"):
+            if not validate_email(email):
+                st.error("Please enter a valid email address ending with '@bbfk.com'.")
+            elif password == "":
+                st.error("Password cannot be empty.")
+            else:
+                # Set session state to indicate login success
+                st.session_state.logged_in = True
+                st.session_state.email = email
+                st.success("Logged in successfully!")
 
-elif auth_choice == "Signup":
-    # Signup form
-    email = st.text_input("Enter your email address", key="signup_email")
-    password = st.text_input("Enter your password", type="password", key="signup_password")
-    confirm_password = st.text_input("Confirm your password", type="password", key="confirm_signup_password")
+    elif auth_choice == "Signup":
+        # Signup form
+        email = st.text_input("Enter your email address", key="signup_email")
+        password = st.text_input("Enter your password", type="password", key="signup_password")
+        confirm_password = st.text_input("Confirm your password", type="password", key="confirm_signup_password")
 
-    if st.button("Signup", key="signup_btn"):
-        if not validate_email(email):
-            st.error("Please enter a valid email address ending with '@bbfk.com'.")
-        elif password != confirm_password:
-            st.error("Passwords do not match.")
-        elif password == "":
-            st.error("Password cannot be empty.")
-        else:
-            # Set session state to indicate signup success
-            st.session_state.logged_in = True
-            st.session_state.email = email
-            st.success("Signup successful! Please login to continue.")
+        if st.button("Signup", key="signup_btn"):
+            if not validate_email(email):
+                st.error("Please enter a valid email address ending with '@bbfk.com'.")
+            elif password != confirm_password:
+                st.error("Passwords do not match.")
+            elif password == "":
+                st.error("Password cannot be empty.")
+            else:
+                # Set session state to indicate signup success
+                st.session_state.logged_in = True
+                st.session_state.email = email
+                st.success("Signup successful! Please login to continue.")
 
 # If logged in, show the blood bank finder
 if "logged_in" in st.session_state and st.session_state.logged_in:
