@@ -72,7 +72,7 @@ st.markdown("""
         }
 
         .filter-section {
-            background-color: #f5f5f5;
+            background-color: #e1e4e8;
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
