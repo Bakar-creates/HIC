@@ -68,38 +68,20 @@ st.markdown("""
         font-weight: 300;
     }
 
-    .filter-section {
-        background: linear-gradient(to right, #00bcd4, #007bff);
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .filter-section:hover {
-        transform: scale(1.03);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
     .filter-section select {
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 10px;
         border-radius: 10px;
-        border: 1px solid #007bff;
-        background-color: #ffffff;
-        color: #333;
-        font-size: 1rem;
+        border: 1px solid #007bff;  /* Blue border */
+        background-color: #00bcd4;  /* Light blue background */
+        color: white;  /* White text color */
     }
 
     .filter-section select:focus {
-        border-color: #00bcd4;
+        border-color: #0a74da; /* Focused blue border */
         outline: none;
         box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
-    }
-
-    .filter-section select option {
-        background-color: #f9f9f9;
     }
 
     .card {
@@ -120,7 +102,7 @@ st.markdown("""
         display: inline-block;
         margin-top: 10px;
         padding: 10px 20px;
-        background-color: #f9c74f;
+        background-color: #f9c74f;  /* Yellow */
         color: white;
         text-decoration: none;
         border-radius: 8px;
@@ -128,9 +110,18 @@ st.markdown("""
     }
 
     .visit-button:hover {
-        background-color: #002244;
+        background-color: #002244;  /* Darker Blue on hover */
     }
 </style>
+
+""", unsafe_allow_html=True)
+
+# Header Section
+st.markdown("""
+    <div class="header">
+        <h1>Blood Bank Finder Karachi</h1>
+        <p>Find blood banks near you with ease in Karachi.</p>
+    </div>
 """, unsafe_allow_html=True)
 
 # Filter Section
