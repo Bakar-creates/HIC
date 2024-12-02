@@ -132,7 +132,6 @@ selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_gro
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-
 # Blood Group Selection
 st.subheader("🔍 Search by Blood Group")
 blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]  # Example blood groups
