@@ -3,6 +3,26 @@ import pandas as pd
 from time import sleep
 import re
 
+
+# Sample data for validation
+valid_emails = ["user1@bbfk.com", "user2@bbfk.com"]
+
+def login():
+    email = st.text_input("Enter your email:")
+    password = st.text_input("Enter your password:", type="password")
+    
+    if email and "@bbfk.com" not in email:
+        st.error("Please enter a valid email address with @bbfk.com domain.")
+    
+    if st.button("Login"):
+        if email in valid_emails and password == "correctpassword":  # Replace with actual validation logic
+            st.success("Login successful!")
+        else:
+            st.error("Invalid email or password.")
+            st.experimental_rerun()
+
+login()
+
 # Sample Data for Blood Banks (same as your original list)
 karachi_blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
