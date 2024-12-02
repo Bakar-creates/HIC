@@ -62,17 +62,33 @@ st.markdown("""
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .filter-section select {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #007bff;
+            background-color: #ffffff;
+        }
+
+        .filter-section select:focus {
+            border-color: #00bcd4;
+            outline: none;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+        }
+
         .card {
             background: linear-gradient(to bottom, #ffffff, #e0f7fa);
             padding: 20px;
             margin: 10px 0;
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .card:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .visit-button {
@@ -83,11 +99,13 @@ st.markdown("""
             color: white;
             text-decoration: none;
             border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
 
         .visit-button:hover {
             background-color: #0056b3;
         }
+
     </style>
 """, unsafe_allow_html=True)
 
