@@ -24,7 +24,7 @@ karachi_blood_banks = [
     {"Name": "New Karachi Blood Bank", "City": "Karachi", "Location": "New Karachi", "Timings": "8:00 AM - 6:00 PM", "Contact": "+92-300-9876543", "Available Blood Groups": "A+, B+, O-", "Website": "https://newkarachibloodbank.com"},
     {"Name": "Karachi Institute of Blood Transfusion", "City": "Karachi", "Location": "Karachi University", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-344-5678901", "Available Blood Groups": "AB+, O-, B+", "Website": "https://kitb.org"},
 ]
-]
+
 
 # Convert data to DataFrame
 df = pd.DataFrame(karachi_blood_banks)
