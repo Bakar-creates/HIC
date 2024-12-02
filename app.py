@@ -16,14 +16,18 @@ blood_banks = [
     {"Name": "Peshawar Blood Bank", "City": "Peshawar", "Location": "Hayatabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-334-1112233", "Available Blood Groups": "O+, B-, AB+", "Website": "https://peshawarbloodbank.com"},
     {"Name": "Quetta Blood Bank", "City": "Quetta", "Location": "Civil Lines", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-335-5551234", "Available Blood Groups": "A-, B+, O-", "Website": "https://quettabloodbank.com"},
     {"Name": "Islamabad Blood Bank", "City": "Islamabad", "Location": "Blue Area", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-336-7651234", "Available Blood Groups": "AB+, A-, O+", "Website": "https://islamabadbloodbank.com"},
-    # New entries
     {"Name": "Multan Blood Bank", "City": "Multan", "Location": "Cantt", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-345-6789012", "Available Blood Groups": "B+, O+", "Website": "https://multanbloodbank.com"},
     {"Name": "Faisalabad Blood Bank", "City": "Faisalabad", "Location": "Peoples Colony", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-334-5678901", "Available Blood Groups": "A-, AB+, O-", "Website": "https://faisalabadbloodbank.com"},
     {"Name": "Hyderabad Blood Bank", "City": "Hyderabad", "Location": "Latifabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-342-6789012", "Available Blood Groups": "A+, B-", "Website": "https://hyderabadbloodbank.com"},
     {"Name": "Sialkot Blood Bank", "City": "Sialkot", "Location": "Cantt", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-300-1236789", "Available Blood Groups": "B-, AB+", "Website": "https://sialkotbloodbank.com"},
     {"Name": "Gujranwala Blood Bank", "City": "Gujranwala", "Location": "Satellite Town", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-333-8765432", "Available Blood Groups": "A+, O+", "Website": "https://gujranwalabloodbank.com"},
     {"Name": "Abbottabad Blood Bank", "City": "Abbottabad", "Location": "Mansehra Road", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-335-9876543", "Available Blood Groups": "A-, B+", "Website": "https://abbottabadbloodbank.com"},
+    {"Name": "Gilgit Blood Bank", "City": "Gilgit", "Location": "Jutial", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-346-4567890", "Available Blood Groups": "O+, AB-", "Website": "https://gilgitbloodbank.com"},
+    {"Name": "Chitral Blood Bank", "City": "Chitral", "Location": "Balach", "Timings": "8:00 AM - 4:00 PM", "Contact": "+92-344-1122334", "Available Blood Groups": "A+, B-", "Website": "https://chitralbloodbank.com"},
+    {"Name": "Bahawalpur Blood Bank", "City": "Bahawalpur", "Location": "Model Town A", "Timings": "9:00 AM - 7:00 PM", "Contact": "+92-348-9988776", "Available Blood Groups": "O+, A-", "Website": "https://bahawalpurbloodbank.com"},
+    {"Name": "Sukkur Blood Bank", "City": "Sukkur", "Location": "Minara Road", "Timings": "8:00 AM - 6:00 PM", "Contact": "+92-349-2233445", "Available Blood Groups": "B+, AB+", "Website": "https://sukkrbloodbank.com"}
 ]
+
 
 # Convert data to DataFrame
 df = pd.DataFrame(blood_banks)
