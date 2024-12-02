@@ -71,13 +71,6 @@ st.markdown("""
             font-weight: 300;
         }
 
-        .filter-section {
-            background-color: #e1e4e8;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
 
         .filter-section select {
             transition: all 0.3s ease;
