@@ -78,7 +78,7 @@ st.markdown("""
         }
 
         .card {
-            background: linear-gradient(to bottom, #ffffff, #e0f7fa);
+            background: linear-gradient(to bottom, #b2ebf2, #e0f7fa); /* Changed to cyan shades */
             padding: 20px;
             margin: 10px 0;
             border-radius: 15px;
@@ -95,7 +95,7 @@ st.markdown("""
             display: inline-block;
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #8bc34a;  /* Changed to light green */
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -103,7 +103,7 @@ st.markdown("""
         }
 
         .visit-button:hover {
-            background-color: #0056b3;
+            background-color: #689f38; /* Darker green on hover */
         }
 
     </style>
@@ -124,6 +124,14 @@ st.markdown('<div class="filter-section">', unsafe_allow_html=True)
 st.subheader("📍 Search by Area")
 filtered_areas = sorted(df["Location"].unique())
 selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=0)
+
+# Blood Group Selection
+st.subheader("🔍 Search by Blood Group")
+blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]  # Example blood groups
+selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
+
+st.markdown('</div>', unsafe_allow_html=True)
+
 
 # Blood Group Selection
 st.subheader("🔍 Search by Blood Group")
