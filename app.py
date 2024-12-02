@@ -25,6 +25,7 @@ blood_banks = [
     {"Name": "Abbottabad Blood Bank", "City": "Abbottabad", "Location": "Mansehra Road", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-335-9876543", "Available Blood Groups": "A-, B+", "Website": "https://abbottabadbloodbank.com"},
 ]
 
+
 # Convert data to DataFrame
 df = pd.DataFrame(blood_banks)
 
@@ -39,70 +40,55 @@ st.set_page_config(page_title="Blood Bank Finder Pakistan", page_icon="🩸", la
 # Add custom CSS for styling
 st.markdown("""
     <style>
-        /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap');
-
-        /* Apply fonts */
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
+        /* General styles for light and dark modes */
+        :root {
+            --primary-color: #007bff;
+            --background-light: #ffffff;
+            --background-dark: #333333;
+            --text-light: #333333;
+            --text-dark: #ffffff;
+            --card-light: #e0f7fa;
+            --card-dark: #444444;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(255, 255, 255, 0.1);
         }
-
-        /* Center the app title */
+        /* Apply theme-specific styles */
+        html[data-theme="light"] {
+            --background-color: var(--background-light);
+            --text-color: var(--text-light);
+            --card-color: var(--card-light);
+            --shadow-color: var(--shadow-light);
+        }
+        html[data-theme="dark"] {
+            --background-color: var(--background-dark);
+            --text-color: var(--text-dark);
+            --card-color: var(--card-dark);
+            --shadow-color: var(--shadow-dark);
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+        }
         .title {
             text-align: center;
             font-size: 2.5em;
             font-weight: 600;
             margin-bottom: 20px;
-            color: #007bff;
+            color: var(--primary-color);
             font-family: 'Poppins', sans-serif;
         }
-
-        /* Make cards responsive with hover effect */
         .card {
-            background-color: #e0f7fa;
+            background-color: var(--card-color);
             padding: 20px;
             margin: 10px 0;
             border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px var(--shadow-color);
             transition: transform 0.3s, box-shadow 0.3s;
-            font-family: 'Roboto', sans-serif;
         }
-        
         .card:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Stylish select boxes */
-        .stSelectbox, .stMultiselect {
-            background-color: #f0f8ff;
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 1.2em;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .stSelectbox:hover, .stMultiselect:hover {
-            background-color: #d0e9f7;
-            transform: scale(1.02);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .stSelectbox:focus, .stMultiselect:focus {
-            border: 2px solid #007bff;
-        }
-
-        /* Ensure the layout is mobile-friendly */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.2em;
-            }
-            .card {
-                padding: 15px;
-            }
+            box-shadow: 0 8px 16px var(--shadow-color);
         }
     </style>
 """, unsafe_allow_html=True)
