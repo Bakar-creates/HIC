@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from time import sleep
 
+# Blood bank data (unchanged)
 karachi_blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
@@ -59,8 +60,7 @@ st.markdown("""
     }
 
     .header h1 {
-        font-size: calc(1.5em + 2vw);  /* Responsive font size */
-        word-wrap: break-word;
+        font-size: calc(1.5em + 2vw);
     }
 
     .header p {
@@ -68,20 +68,33 @@ st.markdown("""
         font-weight: 300;
     }
 
+    .filter-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
     .filter-section select {
+        font-size: 1.1em;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 10px;
+        padding: 10px 20px;
         border-radius: 10px;
-        border: 1px solid #007bff;  /* Blue border */
-        background-color: #00bcd4;  /* Light blue background */
-        color: white;  /* White text color */
+        border: 2px solid #007bff;
+        background-color: #00bcd4;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 250px;
     }
 
     .filter-section select:focus {
-        border-color: #0a74da; /* Focused blue border */
+        border-color: #0a74da;
         outline: none;
         box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+    }
+
+    .filter-section select:hover {
+        background-color: #007bff;
     }
 
     .card {
@@ -102,7 +115,7 @@ st.markdown("""
         display: inline-block;
         margin-top: 10px;
         padding: 10px 20px;
-        background-color: #f9c74f;  /* Yellow */
+        background-color: #f9c74f;
         color: white;
         text-decoration: none;
         border-radius: 8px;
@@ -110,10 +123,16 @@ st.markdown("""
     }
 
     .visit-button:hover {
-        background-color: #002244;  /* Darker Blue on hover */
+        background-color: #002244;
+    }
+
+    /* Add responsive design for small devices */
+    @media (max-width: 600px) {
+        .filter-section select {
+            width: 80%;
+        }
     }
 </style>
-
 """, unsafe_allow_html=True)
 
 # Header Section
@@ -134,7 +153,7 @@ selected_area = st.selectbox("Select an Area:", ["All"] + filtered_areas, index=
 
 # Blood Group Selection
 st.subheader("🔍 Search by Blood Group")
-blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]  # Example blood groups
+blood_groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 selected_blood_group = st.selectbox("Choose a Blood Group:", ["All"] + blood_groups, index=0)
 
 st.markdown('</div>', unsafe_allow_html=True)
