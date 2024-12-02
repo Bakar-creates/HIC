@@ -42,11 +42,9 @@ st.set_page_config(page_title="Blood Bank Finder Karachi", page_icon="🩸", lay
 
 # Custom CSS for styling
 st.markdown("""
-# Custom CSS for styling
-st.markdown("""
    <style>
     .stApp {
-        background: linear-gradient(to bottom right,) #e0f7fa, #fff8e1);
+        background: linear-gradient(to bottom right, #e0f7fa, #fff8e1);
         color: #333;
     }
 
@@ -134,7 +132,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
 
 # Filter Section
 st.markdown('<div class="filter-section">', unsafe_allow_html=True)
