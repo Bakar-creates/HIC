@@ -82,7 +82,7 @@ st.markdown("""
         }
 
         .filter-section select:focus {
-            border-color: #28a745
+            border-color: #0a74da
 ;
             outline: none;
             box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
