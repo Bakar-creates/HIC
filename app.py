@@ -78,7 +78,7 @@ st.markdown("""
             padding: 10px;
             border-radius: 10px;
             border: 1px solid #007bff;
-            background-color: #ffffff;
+            background-color: #e1e4e8;
         }
 
         .filter-section select:focus {
