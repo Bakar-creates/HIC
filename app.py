@@ -42,7 +42,7 @@ def get_blood_banks():
 st.set_page_config(page_title="Blood Bank Finder Karachi", page_icon="🩸", layout="centered")
 
 # Custom CSS for styling
-st.markdown{("""
+st.markdown("""
    <style>
  <style>
     /* Animation CSS */
@@ -114,7 +114,7 @@ st.markdown{("""
    <div class="loading-overlay">
        <h1>Blood Bank Finder Karachi</h1>
    </div>
-""", unsafe_allow_html=True)}
+""", unsafe_allow_html=True)
 
     .stApp {
         background: linear-gradient(to bottom right, #e0f7fa, #fff8e1);
