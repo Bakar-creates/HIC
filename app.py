@@ -106,7 +106,7 @@ st.markdown("""
             display: inline-block;
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: #003366;  /* Dark Blue */
+            background-color: #28a745;  /* Green */
             color: white;
             text-decoration: none;
             border-radius: 8px;
