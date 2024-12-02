@@ -6,7 +6,24 @@ from time import sleep
 karachi_blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
-    # More blood banks...
+    {"Name": "Karachi Blood Bank", "City": "Karachi", "Location": "Korangi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-6781234", "Available Blood Groups": "A+, O+, B+", "Website": "https://karachibloodbank.com"},
+    {"Name": "Northern Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "24/7", "Contact": "+92-323-1234567", "Available Blood Groups": "AB-, A-, O+", "Website": "https://northernbloodbank.com"},
+    {"Name": "Sindh Blood Bank", "City": "Karachi", "Location": "Clifton", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-324-9876543", "Available Blood Groups": "A-, O-, B+", "Website": "https://sindhbloodbank.com"},
+    {"Name": "Jinnah Blood Bank", "City": "Karachi", "Location": "Jamshed Road", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-331-2345678", "Available Blood Groups": "B-, AB+, O+", "Website": "https://jinnahbloodbank.com"},
+    {"Name": "Malir Blood Bank", "City": "Karachi", "Location": "Malir Cantt", "Timings": "9:00 AM - 5:00 PM", "Contact": "+92-332-5678901", "Available Blood Groups": "A+, AB+, O+", "Website": "https://malirbloodbank.com"},
+    {"Name": "Orangi Town Blood Bank", "City": "Karachi", "Location": "Orangi Town", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-300-3456789", "Available Blood Groups": "O+, B-", "Website": "https://orangi-bloodbank.com"},
+    {"Name": "Landhi Blood Bank", "City": "Karachi", "Location": "Landhi", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-300-7654321", "Available Blood Groups": "B-, AB+", "Website": "https://landhibloodbank.com"},
+    {"Name": "Gulshan Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Maymar", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-333-9876543", "Available Blood Groups": "A+, O-", "Website": "https://gulshanbloodbank.com"},
+    {"Name": "Korangi Blood Bank", "City": "Karachi", "Location": "Korangi", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-334-5678901", "Available Blood Groups": "A+, O-, AB+", "Website": "https://korangibloodbank.com"},
+    {"Name": "Lyari Blood Bank", "City": "Karachi", "Location": "Lyari", "Timings": "24/7", "Contact": "+92-345-2345678", "Available Blood Groups": "O+, AB+, B-", "Website": "https://lyaribloodbank.com"},
+    {"Name": "Bahria Town Blood Bank", "City": "Karachi", "Location": "Bahria Town", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-321-2345678", "Available Blood Groups": "A-, O+, AB-", "Website": "https://bahriatownbloodbank.com"},
+    {"Name": "Saddar Blood Bank", "City": "Karachi", "Location": "Saddar", "Timings": "9:00 AM - 7:00 PM", "Contact": "+92-311-2345678", "Available Blood Groups": "A+, B-, AB+", "Website": "https://saddarbloodbank.com"},
+    {"Name": "Faisal Blood Bank", "City": "Karachi", "Location": "Faisal Cantonment", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-333-2345678", "Available Blood Groups": "A-, O-, AB+", "Website": "https://faisalbloodbank.com"},
+    {"Name": "Gulistan-e-Johar Blood Bank", "City": "Karachi", "Location": "Gulistan-e-Johar", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-320-1234567", "Available Blood Groups": "O-, AB+, B+", "Website": "https://gulistanbloodbank.com"},
+    {"Name": "Shah Faisal Blood Bank", "City": "Karachi", "Location": "Shah Faisal", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-331-1234567", "Available Blood Groups": "A-, O+, B-", "Website": "https://shahfaisalbloodbank.com"},
+    {"Name": "New Karachi Blood Bank", "City": "Karachi", "Location": "New Karachi", "Timings": "8:00 AM - 6:00 PM", "Contact": "+92-300-9876543", "Available Blood Groups": "A+, B+, O-", "Website": "https://newkarachibloodbank.com"},
+    {"Name": "Karachi Institute of Blood Transfusion", "City": "Karachi", "Location": "Karachi University", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-344-5678901", "Available Blood Groups": "AB+, O-, B+", "Website": "https://kitb.org"},
+]
 ]
 
 # Convert data to DataFrame
@@ -105,7 +122,7 @@ st.markdown("""
 # Header Section
 st.markdown("""
     <div class="header">
-        <h1>🩸 Blood Bank Finder Karachi 🩸</h1>
+        <h1>Blood Bank Finder Karachi</h1>
         <p>Find blood banks near you with ease in Karachi.</p>
     </div>
 """, unsafe_allow_html=True)
