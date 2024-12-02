@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from time import sleep
 
-# Expanded blood bank data for Karachi
 karachi_blood_banks = [
     {"Name": "City Blood Bank", "City": "Karachi", "Location": "Shahrah-e-Faisal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-1234567", "Available Blood Groups": "A+, A-, O+, O-, B+", "Website": "https://citybloodbank.com"},
     {"Name": "Dow Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "24/7", "Contact": "+92-321-9876543", "Available Blood Groups": "A+, AB-, O+", "Website": "https://dowbloodbank.com"},
@@ -23,7 +22,14 @@ karachi_blood_banks = [
     {"Name": "Shah Faisal Blood Bank", "City": "Karachi", "Location": "Shah Faisal", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-331-1234567", "Available Blood Groups": "A-, O+, B-", "Website": "https://shahfaisalbloodbank.com"},
     {"Name": "New Karachi Blood Bank", "City": "Karachi", "Location": "New Karachi", "Timings": "8:00 AM - 6:00 PM", "Contact": "+92-300-9876543", "Available Blood Groups": "A+, B+, O-", "Website": "https://newkarachibloodbank.com"},
     {"Name": "Karachi Institute of Blood Transfusion", "City": "Karachi", "Location": "Karachi University", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-344-5678901", "Available Blood Groups": "AB+, O-, B+", "Website": "https://kitb.org"},
+    {"Name": "North Nazimabad Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "24/7", "Contact": "+92-323-6543210", "Available Blood Groups": "A+, O-, AB+", "Website": "https://northnazimabadbloodbank.com"},
+    {"Name": "Saddar Emergency Blood Bank", "City": "Karachi", "Location": "Saddar", "Timings": "24/7", "Contact": "+92-312-3456789", "Available Blood Groups": "A-, B-, O+", "Website": "https://saddaremergencybloodbank.com"},
+    {"Name": "Gulshan Central Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Iqbal", "Timings": "9:00 AM - 9:00 PM", "Contact": "+92-300-7654321", "Available Blood Groups": "A+, AB-, O+", "Website": "https://gulshancentralbloodbank.com"},
+    {"Name": "Gulshan Welfare Blood Bank", "City": "Karachi", "Location": "Gulshan-e-Maymar", "Timings": "9:00 AM - 6:00 PM", "Contact": "+92-321-4567890", "Available Blood Groups": "B+, O-", "Website": "https://gulshanwelfarebloodbank.com"},
+    {"Name": "North Nazimabad Trust Blood Bank", "City": "Karachi", "Location": "North Nazimabad", "Timings": "8:00 AM - 8:00 PM", "Contact": "+92-322-6543210", "Available Blood Groups": "O-, AB+", "Website": "https://northnazimabadtrustbloodbank.com"},
 ]
+
+
 
 
 # Convert data to DataFrame
